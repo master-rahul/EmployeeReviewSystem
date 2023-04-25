@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/employeeHome.css">
+
+</head>
+
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div id="main">
+       <div id="header">
+            <div id="left">
+
+            </div>
+            <div id="right">
+                <a style="text-decoration: none;" href="/employee/destroySession"><button>Log Out</button></a>
+            </div>
+       </div>
+       <div id="content">
+            <div id="pending">
+                <div class="header-text">
+                    &nbsp;Pending Reviews
+                </div>
+                <div id="pending-list">
+
+
+
+                    <div class="pending-list-item" id="pending-item-1">
+                        <div id="item-content">
+                            Employee Review Pending : Rahul Verma
+                            <p class="conent-pending-item">Content : Employee Review Pending : Rahul VermaEmployee Review Pending : Rahul
+                                VermaEmployee Review Pending : Rahul VermaEmployee Review Pending : Rahul Verma</p>
+                        </div>
+                        <div id="item-dates">
+                            <div id="start-date">
+                                <p class="conent-pending-item">&nbsp;Start Date : 10 Aug 2023</p>
+                            </div>
+                            <div id="end-date">
+                                <p class="conent-pending-item">&nbsp;End Date : 12 Aug 2023</p>
+                            </div>
+                        </div>
+                        <div class="view-list-item">
+                            <button class="review" onclick="openReviewForm('Rahul Verma', 'pending-item-1')">Review</button>
+                        </div>
+                    </div>
+
+
+
+                    <div class="pending-list-item" id="pending-item-2">
+                        <div id="item-content">
+                            Employee Review Pending : Rahul Verma
+                            <p class="conent-pending-item">Content : Employee Review Pending : Rahul VermaEmployee Review Pending : Rahul
+                                VermaEmployee Review Pending : Rahul VermaEmployee Review Pending : Rahul Verma</p>
+                        </div>
+                        <div id="item-dates">
+                            <div id="start-date">
+                                <p class="conent-pending-item">&nbsp;Start Date : 10 Aug 2023</p>
+                            </div>
+                            <div id="end-date">
+                                <p class="conent-pending-item">&nbsp;End Date : 12 Aug 2023</p>
+                            </div>
+                        </div>
+                        <div class="view-list-item">
+                            <button class="review" onclick="openReviewForm('Rahul Verma', 'pending-item-1')">Review</button>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+
+
+            <div id="completed">
+                <div class="header-text">
+                    &nbsp; Completed Reviews
+                </div>
+                <div id="completed-list">
+
+                </div>
+            </div>
+       </div>
+    </div>
+
+   
+
+
+
+    <div id="overlay">
+        <div id="review-form">
+            <h2>Employee Review Form</h2>
+            <form action="/">
+                <label for="employee-name">Employee Name:</label>
+                <input type="text" id="employee-name" name="employee-name"  disabled><br><br>
+                <label for="review-date">Review Date:</label>
+                <input type="date" id="review-date" name="review-date"  disabled><br><br>
+                <label for="review-comments">Review Comments:</label>
+                <textarea id="review-comments" name="review-comments" rows="6" cols="50"></textarea><br><br>
+                <input type="submit" value="Submit" onclick="submitReviewForm()" style="text-align: center;">
+            </form>
+            <button onclick="closeReviewForm()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        var idd;
+        function openReviewForm(name, id) {
+            idd = id;
+            document.getElementById("overlay").style.display = "block";
+            document.getElementById("employee-name").value = name;
+            var today = new Date().toISOString().substr(0, 10);
+            document.getElementById("review-date").value = today;
+        }
+
+        function closeReviewForm() {
+            document.getElementById("overlay").style.display = "none";
+        }
+
+        function submitReviewForm() {
+            console.log(idd);
+            document.getElementById(idd).remove()
+        }
+    </script>
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <script id="flash-message">
+            // Get the button and popup overlay elements
+        <%if (flash.success && flash.success.length > 0) {%>
+                new Noty({
+                    theme: 'relax',
+                    type: 'success',
+                    text: "<%=flash.success%>",
+                    layout: 'topRight',
+                    timeout: 500
+                }).show();
+                    <%}%>
+                     <%if (flash.error && flash.error.length > 0) {%>
+                new Noty({
+                    theme: 'relax',
+                    type: 'error',
+                    text: "<%=flash.error%>",
+                    layout: 'topRight',
+                    timeout: 500
+                }).show();
+        <%}%>
+        </script>
+       
+       
+</body>
+
+</html>
