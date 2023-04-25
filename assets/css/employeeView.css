@@ -1,12 +1,10 @@
-
-
 body {
     /* background-color: #080710; */
     background-color: rgb(107, 65, 65);
 }
 
 .background {
- 
+
     position: absolute;
     transform: translate(-50%, -50%);
     left: 50%;
@@ -19,6 +17,7 @@ body {
     position: absolute;
     border-radius: 50%;
 }
+
 .background1 {
 
     position: absolute;
@@ -40,6 +39,7 @@ body {
     left: -720px;
     top: -480px;
 }
+
 .shape:last-child {
     background: linear-gradient(to right,
             #ff512f,
@@ -47,6 +47,7 @@ body {
     right: -720px;
     bottom: -500px;
 }
+
 .shape1:first-child {
     background: linear-gradient(#1845ad,
             #23a2f6);
@@ -65,9 +66,10 @@ body {
 
 
 
-#main *{
+#main * {
     color: white;
 }
+
 #main {
     margin-top: 5vh;
     height: 90vh;
@@ -82,60 +84,67 @@ body {
     backdrop-filter: blur(10px);
     border: 2px solid white;
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-   
+
 }
 
-#heading{
+#heading {
     display: flex;
     height: 50px;
     width: 100%;
-    border-bottom : 1px solid white;
+    border-bottom: 1px solid white;
 }
-#hh{
+
+#hh {
     height: 50px;
     min-width: 225px;
     border-right: 1px solid white;
 }
-#options{
+
+#options {
     height: 50px;
     width: 60%;
     display: flex;
     border-right: 1px solid white;
     justify-content: space-around;
-    color : black;
-    
+    color: black;
+
 }
 
-#logout{
+#logout {
     display: inline;
     display: flex;
     height: 50px;
     width: 25%;
     justify-content: space-between;
 }
-#name{
+
+#name {
     display: inline;
-   width: 60%;
+    width: 60%;
     height: 50px;
     overflow: scroll;
 }
-#button{
+
+#button {
     display: inline;
     width: 40%;
     height: 50px;
 }
-#button a button{
-cursor: pointer;
-   color : black;
-   font-family: monospace;
-   font-size: 15px;
+
+#button a button {
+    cursor: pointer;
+    color: black;
+    font-family: monospace;
+    font-size: 15px;
     width: 100%;
     height: 100%;
 }
+
 #button a button:hover {
     background-color: #23a2f6;
 }
-#content{
+
+#content {
     display: flex;
     margin-top: 40px;
     height: 80%;
@@ -143,7 +152,8 @@ cursor: pointer;
     border: 1px solid white;
     justify-content: space-around;
 }
-#pending{
+
+#pending {
     display: inline;
     margin-top: 20px;
     width: 45%;
@@ -151,11 +161,12 @@ cursor: pointer;
     border: 1px solid white;
     overflow: scroll;
     background-color: rgba(255, 255, 255, 0.13);
-        border-radius: 10px;
-        backdrop-filter: blur(10px);
-        border: 2px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
 }
+
 #completed {
     margin-top: 20px;
     display: inline;
@@ -164,14 +175,14 @@ cursor: pointer;
     border: 1px solid white;
     overflow: scroll;
     background-color: rgba(255, 255, 255, 0.13);
-        border-radius: 10px;
-        backdrop-filter: blur(10px);
-        border: 2px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
 }
 
 
-.pending-list-item{
+.pending-list-item {
     width: 95%;
     height: 80px;
     border: 1px solid white;
@@ -181,13 +192,14 @@ cursor: pointer;
     background-color: rgba(35, 149, 255, 0.5);
     box-shadow: 1px 5px 0px lightblue;
     background-color: rgba(255, 255, 255, 0.13);
-        border-radius: 10px;
-        backdrop-filter: blur(10px);
-        border: 2px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-        margin-left: 10px;
-       
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    margin-left: 10px;
+
 }
+
 .completed-list-item {
     margin-left: 10px;
     width: 95%;
@@ -199,10 +211,10 @@ cursor: pointer;
     background-color: rgba(35, 149, 255, 0.5);
     box-shadow: 1px 5px 0px lightblue;
     background-color: rgba(255, 255, 255, 0.13);
-        border-radius: 10px;
-        backdrop-filter: blur(10px);
-        border: 2px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
 }
 
 #pending-item-content {
@@ -224,7 +236,7 @@ cursor: pointer;
     width: 40%;
     height: 80px;
     display: inline-block;
-    
+
 }
 
 #start-date {
@@ -234,27 +246,30 @@ cursor: pointer;
 #end-date {
     height: 50%;
 }
-#completed-item-content{
+
+#completed-item-content {
     width: 65%;
-        height: 100px;
-        padding: 10px 10px;
-        border-right: 3px solid white;
-        opacity: 100%;
-        display: flex;
-        color: white;
-        font-size: 15px;
-        font-family: monospace;
-        overflow-x: scroll;
-        margin-bottom: 10px;
-        justify-content: space-around;
+    height: 100px;
+    padding: 10px 10px;
+    border-right: 3px solid white;
+    opacity: 100%;
+    display: flex;
+    color: white;
+    font-size: 15px;
+    font-family: monospace;
+    overflow-x: scroll;
+    margin-bottom: 10px;
+    justify-content: space-around;
 }
-#text{
-    
+
+#text {
+
     height: 100%;
     display: inline-block;
     width: 35%;
 }
-#data{
+
+#data {
     padding: 10px 10px;
     height: 93%;
     display: inline-block;
@@ -264,25 +279,30 @@ cursor: pointer;
     padding: 5px 5px;
     border-radius: 2%;
 }
-.emp1, .emp2{
+
+.emp1,
+.emp2 {
     text-align: center;
-    padding :10px 5px;
-    
-   border-bottom: 1px solid white;
+    padding: 10px 5px;
+
+    border-bottom: 1px solid white;
     height: 20px;
     overflow: scroll;
 }
-.emp3{
-     text-align: center;
-    padding :10px 5px;
-    
+
+.emp3 {
+    text-align: center;
+    padding: 10px 5px;
+
     height: 20px;
     overflow: scroll;
 }
+
 #options .options-button a button {
-    color : black;
+    color: black;
 
 }
+
 .options-button button {
     width: auto;
     height: 100%;
@@ -294,59 +314,64 @@ cursor: pointer;
     cursor: pointer;
 }
 
-#employee-list{
+#employee-list {
     width: 50%;
     height: 90%;
     border: 1px solid white;
-    padding : 10px 30px;
-    margin-top : 10px;
+    padding: 10px 30px;
+    margin-top: 10px;
     background-color: rgba(255, 255, 255, 0.13);
-        border-radius: 10px;
-        backdrop-filter: blur(10px);
-        border: 2px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
 }
-#employee-list-item{
+
+#employee-list-item {
     width: 100%;
     height: 80px;
     margin-bottom: 10px;
     display: flex;
     background-color: grey;
     background-color: rgba(255, 255, 255, 0.13);
-        border-radius: 10px;
-        backdrop-filter: blur(10px);
-        border: 2px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
 }
-#employee-list-item-content{
+
+#employee-list-item-content {
     width: 70%;
     height: 50%;
-    
+
     padding: 20px 35px;
     overflow: scroll;
     font-family: monospace;
     font-size: 20px;
 }
+
 #employee-list-item-edit {
     width: 20%;
     height: 100%;
-    
+
 }
-#employee-edit{
+
+#employee-edit {
     width: 40%;
     height: 90%;
-    
+
     padding: 10px 30px;
     margin-top: 10px;
 }
-#employee-list-item-edit a button{
+
+#employee-list-item-edit a button {
     cursor: pointer;
     width: 100%;
     height: 100%;
-    color : black;
+    color: black;
     font-family: monospace;
     font-size: 20px;
-    
+
 
 }
 
@@ -372,27 +397,30 @@ cursor: pointer;
     font-weight: 300;
     border: 1px solid white;
 }
-#employee-edit form * {
-     font-family: 'Poppins', sans-serif;
-     color: #ffffff;
-     letter-spacing: 0.5px;
-     outline: none;
-     border: none;
- }
-  #employee-edit form input::placeholder {
-      color: #e5e5e5;
-  }
-#employee-edit form button{
-       color: black;
-       background-color: white;
-       cursor: pointer;
-       width: 100%;
-       height: 40px;
-       font-size: 18px;
-        font-family: 'Poppins', sans-serif;
-        letter-spacing: 0.5px;
-   }
 
-#employee-edit form button:hover{
+#employee-edit form * {
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+
+#employee-edit form input::placeholder {
+    color: #e5e5e5;
+}
+
+#employee-edit form button {
+    color: black;
+    background-color: white;
+    cursor: pointer;
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+#employee-edit form button:hover {
     background-color: grey;
 }

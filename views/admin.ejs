@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Login</title>
+    <title>AdminPortal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -17,6 +17,10 @@
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
+    <div class="background1">
+        <div class="shape1"></div>
+        <div class="shape1"></div>
+    </div>
         
     <div id="main">
         <div id="heading">
@@ -24,7 +28,18 @@
             <h2>ADMIN PORTAL</h2>
             </div>
             <div id="options">
-
+                <div id="performance" class="options-button">
+                    <a  href="/employee/performance" style="text-decoration: none;"><button >Performance</button></a>
+                </div>
+                <div id="employee" class="options-button">
+                    <a  href="/employee/employeeView"style="text-decoration: none;"><button>Employee</button></a>
+                </div>
+                <div id="reviews" class="options-button">
+                    <a href="/employee/reviews" style="text-decoration: none;"><button >Reviews</button></a>
+                </div>
+                <div id="assign" class="options-button">
+                   <a href="/employee/assign" style="text-decoration: none;"><button>Assign Employee</button></a>
+                </div>
             </div>
             <div id="logout">
                 <div id="name">
@@ -38,27 +53,10 @@
         </div>
 
         <div id="content">
-           
             <div id="pending">
                 <h3>&nbsp;&nbsp;PENDING REVIEWS</h3>
                 <div class="pending-list-item" id="pending-item-1">
                     <div id="pending-item-content">
-                       Employee  : &nbsp;Rahul Verma <br>
-                       Assigned To : &nbsp;Pooja Verma
-                    </div>
-                    <div id="item-dates">
-                        <div id="start-date">
-                            <p class="conent-pending-item">&nbsp;&nbsp;Start Date : 10 Aug 2023</p>
-                        </div>
-                        <div id="end-date">
-                            <p class="conent-pending-item">&nbsp;&nbsp;End Date : 12 Aug 2023</p>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="pending-list-item" id="pending-item-1">
-                    <div id="pending-item-content">
                         Employee : &nbsp;Rahul Verma <br>
                         Assigned To : &nbsp;Pooja Verma
                     </div>
@@ -71,160 +69,19 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="pending-list-item" id="pending-item-1">
-                    <div id="pending-item-content">
-                        Employee : &nbsp;Rahul Verma <br>
-                        Assigned To : &nbsp;Pooja Verma
-                    </div>
-                    <div id="item-dates">
-                        <div id="start-date">
-                            <p class="conent-pending-item">&nbsp;&nbsp;Start Date : 10 Aug 2023</p>
-                        </div>
-                        <div id="end-date">
-                            <p class="conent-pending-item">&nbsp;&nbsp;End Date : 12 Aug 2023</p>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="pending-list-item" id="pending-item-1">
-                    <div id="pending-item-content">
-                        Employee : &nbsp;Rahul Verma <br>
-                        Assigned To : &nbsp;Pooja Verma
-                    </div>
-                    <div id="item-dates">
-                        <div id="start-date">
-                            <p class="conent-pending-item">&nbsp;&nbsp;Start Date : 10 Aug 2023</p>
-                        </div>
-                        <div id="end-date">
-                            <p class="conent-pending-item">&nbsp;&nbsp;End Date : 12 Aug 2023</p>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="pending-list-item" id="pending-item-1">
-                    <div id="pending-item-content">
-                        Employee : &nbsp;Rahul Verma <br>
-                        Assigned To : &nbsp;Pooja Verma
-                    </div>
-                    <div id="item-dates">
-                        <div id="start-date">
-                            <p class="conent-pending-item">&nbsp;&nbsp;Start Date : 10 Aug 2023</p>
-                        </div>
-                        <div id="end-date">
-                            <p class="conent-pending-item">&nbsp;&nbsp;End Date : 12 Aug 2023</p>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="pending-list-item" id="pending-item-1">
-                    <div id="pending-item-content">
-                        Employee : &nbsp;Rahul Verma <br>
-                        Assigned To : &nbsp;Pooja Verma
-                    </div>
-                    <div id="item-dates">
-                        <div id="start-date">
-                            <p class="conent-pending-item">&nbsp;&nbsp;Start Date : 10 Aug 2023</p>
-                        </div>
-                        <div id="end-date">
-                            <p class="conent-pending-item">&nbsp;&nbsp;End Date : 12 Aug 2023</p>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="pending-list-item" id="pending-item-1">
-                    <div id="pending-item-content">
-                        Employee : &nbsp;Rahul Verma <br>
-                        Assigned To : &nbsp;Pooja Verma
-                    </div>
-                    <div id="item-dates">
-                        <div id="start-date">
-                            <p class="conent-pending-item">&nbsp;&nbsp;Start Date : 10 Aug 2023</p>
-                        </div>
-                        <div id="end-date">
-                            <p class="conent-pending-item">&nbsp;&nbsp;End Date : 12 Aug 2023</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pending-list-item" id="pending-item-1">
-                    <div id="pending-item-content">
-                        Employee : &nbsp;Rahul Verma <br>
-                        Assigned To : &nbsp;Pooja Verma
-                    </div>
-                    <div id="item-dates">
-                        <div id="start-date">
-                            <p class="conent-pending-item">&nbsp;&nbsp;Start Date : 10 Aug 2023</p>
-                        </div>
-                        <div id="end-date">
-                            <p class="conent-pending-item">&nbsp;&nbsp;End Date : 12 Aug 2023</p>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="pending-list-item" id="pending-item-1">
-                    <div id="pending-item-content">
-                        Employee : &nbsp;Rahul Verma <br>
-                        Assigned To : &nbsp;Pooja Verma
-                    </div>
-                    <div id="item-dates">
-                        <div id="start-date">
-                            <p class="conent-pending-item">&nbsp;&nbsp;Start Date : 10 Aug 2023</p>
-                        </div>
-                        <div id="end-date">
-                            <p class="conent-pending-item">&nbsp;&nbsp;End Date : 12 Aug 2023</p>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="pending-list-item" id="pending-item-1">
-                    <div id="pending-item-content">
-                        Employee : &nbsp;Rahul Verma <br>
-                        Assigned To : &nbsp;Pooja Verma
-                    </div>
-                    <div id="item-dates">
-                        <div id="start-date">
-                            <p class="conent-pending-item">&nbsp;&nbsp;Start Date : 10 Aug 2023</p>
-                        </div>
-                        <div id="end-date">
-                            <p class="conent-pending-item">&nbsp;&nbsp;End Date : 12 Aug 2023</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pending-list-item" id="pending-item-1">
-                    <div id="pending-item-content">
-                        Employee : &nbsp;Rahul Verma <br>
-                        Assigned To : &nbsp;Pooja Verma
-                    </div>
-                    <div id="item-dates">
-                        <div id="start-date">
-                            <p class="conent-pending-item">&nbsp;&nbsp;Start Date : 10 Aug 2023</p>
-                        </div>
-                        <div id="end-date">
-                            <p class="conent-pending-item">&nbsp;&nbsp;End Date : 12 Aug 2023</p>
-                        </div>
-                    </div>
-                </div>
-
-
-
+            
+            
+            
+            
             </div>
-
-
+            
+            
             
             <div id="completed">
             
                 <h3>&nbsp;&nbsp;COMPLETED REVIEWS</h3>
                 <div class="completed-list-item" id="completed-item-1">
-                    
+            
                     <div id="completed-item-content">
                         <div id="text">
                             Review :
@@ -241,288 +98,32 @@
                             Grim-visaged war hath smooth'd his wrinkled front;
                             And now, instead of mounting barded steeds
                         </div>
-                       
+            
                     </div>
                     <div id="text">
                         <div id="employee">
-                            <div class="emp">
+                            <div class="emp1">
                                 Employee Name : Rahul Verma
                             </div>
-                            <div class="emp">
+                            <div class="emp2">
                                 Assigned To : Pooja Verma
                             </div>
-                            <div class="emp">
-                               Review Date : 10 Aug 2023
-                            </div>
-                        </div>
-                    </div>
-                   
-                </div>
-
-
-
-                <div class="completed-list-item" id="completed-item-1">
-                
-                    <div id="completed-item-content">
-                        <div id="text">
-                            Review :
-                        </div>
-                        <div id="data" style="display: inline;">
-                            Now is the winter of our discontent
-                            Made glorious summer by this sun of York;
-                            And all the clouds that lour'd upon our house
-                            In the deep bosom of the ocean buried.
-                            Now are our brows bound with victorious wreaths;
-                            Our bruised arms hung up for monuments;
-                            Our stern alarums changed to merry meetings,
-                            Our dreadful marches to delightful measures.
-                            Grim-visaged war hath smooth'd his wrinkled front;
-                            And now, instead of mounting barded steeds
-                        </div>
-                
-                    </div>
-                    <div id="text">
-                        <div id="employee">
-                            <div class="emp">
-                                Employee Name : Rahul Verma
-                            </div>
-                            <div class="emp">
-                                Assigned To : Pooja Verma
-                            </div>
-                            <div class="emp">
+                            <div class="emp3">
                                 Review Date : 10 Aug 2023
                             </div>
                         </div>
                     </div>
-                
+            
                 </div>
-
-
-
-
-
-
-                <div class="completed-list-item" id="completed-item-1">
-                
-                    <div id="completed-item-content">
-                        <div id="text">
-                            Review :
-                        </div>
-                        <div id="data" style="display: inline;">
-                            Now is the winter of our discontent
-                            Made glorious summer by this sun of York;
-                            And all the clouds that lour'd upon our house
-                            In the deep bosom of the ocean buried.
-                            Now are our brows bound with victorious wreaths;
-                            Our bruised arms hung up for monuments;
-                            Our stern alarums changed to merry meetings,
-                            Our dreadful marches to delightful measures.
-                            Grim-visaged war hath smooth'd his wrinkled front;
-                            And now, instead of mounting barded steeds
-                        </div>
-                
-                    </div>
-                    <div id="text">
-                        <div id="employee">
-                            <div class="emp">
-                                Employee Name : Rahul Verma
-                            </div>
-                            <div class="emp">
-                                Assigned To : Pooja Verma
-                            </div>
-                            <div class="emp">
-                                Review Date : 10 Aug 2023
-                            </div>
-                        </div>
-                    </div>
-                
-                </div>
-
-                <div class="completed-list-item" id="completed-item-1">
-                
-                    <div id="completed-item-content">
-                        <div id="text">
-                            Review :
-                        </div>
-                        <div id="data" style="display: inline;">
-                            Now is the winter of our discontent
-                            Made glorious summer by this sun of York;
-                            And all the clouds that lour'd upon our house
-                            In the deep bosom of the ocean buried.
-                            Now are our brows bound with victorious wreaths;
-                            Our bruised arms hung up for monuments;
-                            Our stern alarums changed to merry meetings,
-                            Our dreadful marches to delightful measures.
-                            Grim-visaged war hath smooth'd his wrinkled front;
-                            And now, instead of mounting barded steeds
-                        </div>
-                
-                    </div>
-                    <div id="text">
-                        <div id="employee">
-                            <div class="emp">
-                                Employee Name : Rahul Verma
-                            </div>
-                            <div class="emp">
-                                Assigned To : Pooja Verma
-                            </div>
-                            <div class="emp">
-                                Review Date : 10 Aug 2023
-                            </div>
-                        </div>
-                    </div>
-                
-                </div>
-
-
-                <div class="completed-list-item" id="completed-item-1">
-                
-                    <div id="completed-item-content">
-                        <div id="text">
-                            Review :
-                        </div>
-                        <div id="data" style="display: inline;">
-                            Now is the winter of our discontent
-                            Made glorious summer by this sun of York;
-                            And all the clouds that lour'd upon our house
-                            In the deep bosom of the ocean buried.
-                            Now are our brows bound with victorious wreaths;
-                            Our bruised arms hung up for monuments;
-                            Our stern alarums changed to merry meetings,
-                            Our dreadful marches to delightful measures.
-                            Grim-visaged war hath smooth'd his wrinkled front;
-                            And now, instead of mounting barded steeds
-                        </div>
-                
-                    </div>
-                    <div id="text">
-                        <div id="employee">
-                            <div class="emp">
-                                Employee Name : Rahul Verma
-                            </div>
-                            <div class="emp">
-                                Assigned To : Pooja Verma
-                            </div>
-                            <div class="emp">
-                                Review Date : 10 Aug 2023
-                            </div>
-                        </div>
-                    </div>
-                
-                </div>
-
-
-                <div class="completed-list-item" id="completed-item-1">
-                
-                    <div id="completed-item-content">
-                        <div id="text">
-                            Review :
-                        </div>
-                        <div id="data" style="display: inline;">
-                            Now is the winter of our discontent
-                            Made glorious summer by this sun of York;
-                            And all the clouds that lour'd upon our house
-                            In the deep bosom of the ocean buried.
-                            Now are our brows bound with victorious wreaths;
-                            Our bruised arms hung up for monuments;
-                            Our stern alarums changed to merry meetings,
-                            Our dreadful marches to delightful measures.
-                            Grim-visaged war hath smooth'd his wrinkled front;
-                            And now, instead of mounting barded steeds
-                        </div>
-                
-                    </div>
-                    <div id="text">
-                        <div id="employee">
-                            <div class="emp">
-                                Employee Name : Rahul Verma
-                            </div>
-                            <div class="emp">
-                                Assigned To : Pooja Verma
-                            </div>
-                            <div class="emp">
-                                Review Date : 10 Aug 2023
-                            </div>
-                        </div>
-                    </div>
-                
-                </div>
-
-
-                <div class="completed-list-item" id="completed-item-1">
-                
-                    <div id="completed-item-content">
-                        <div id="text">
-                            Review :
-                        </div>
-                        <div id="data" style="display: inline;">
-                            Now is the winter of our discontent
-                            Made glorious summer by this sun of York;
-                            And all the clouds that lour'd upon our house
-                            In the deep bosom of the ocean buried.
-                            Now are our brows bound with victorious wreaths;
-                            Our bruised arms hung up for monuments;
-                            Our stern alarums changed to merry meetings,
-                            Our dreadful marches to delightful measures.
-                            Grim-visaged war hath smooth'd his wrinkled front;
-                            And now, instead of mounting barded steeds
-                        </div>
-                
-                    </div>
-                    <div id="text">
-                        <div id="employee">
-                            <div class="emp">
-                                Employee Name : Rahul Verma
-                            </div>
-                            <div class="emp">
-                                Assigned To : Pooja Verma
-                            </div>
-                            <div class="emp">
-                                Review Date : 10 Aug 2023
-                            </div>
-                        </div>
-                    </div>
-                
-                </div>
-
-                <div class="completed-list-item" id="completed-item-1">
-                
-                    <div id="completed-item-content">
-                        <div id="text">
-                            Review :
-                        </div>
-                        <div id="data" style="display: inline;">
-                            Now is the winter of our discontent
-                            Made glorious summer by this sun of York;
-                            And all the clouds that lour'd upon our house
-                            In the deep bosom of the ocean buried.
-                            Now are our brows bound with victorious wreaths;
-                            Our bruised arms hung up for monuments;
-                            Our stern alarums changed to merry meetings,
-                            Our dreadful marches to delightful measures.
-                            Grim-visaged war hath smooth'd his wrinkled front;
-                            And now, instead of mounting barded steeds
-                        </div>
-                
-                    </div>
-                    <div id="text">
-                        <div id="employee">
-                            <div class="emp">
-                                Employee Name : Rahul Verma
-                            </div>
-                            <div class="emp">
-                                Assigned To : Pooja Verma
-                            </div>
-                            <div class="emp">
-                                Review Date : 10 Aug 2023
-                            </div>
-                        </div>
-                    </div>
-                
-                </div>
-
-
             </div>
+           
+
+
+            
+
+
+
+
         </div>
 
     </div>
@@ -565,6 +166,19 @@
             }).show();
         <%}%>
     </script>
+
+    <script>
+      
+
+       
+    </script>
+
+
+
+
+
+
+
 </body>
 
 </html>

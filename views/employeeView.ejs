@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Employee</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/employeeView.css">
+
+</head>
+
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <div class="background1">
+        <div class="shape1"></div>
+        <div class="shape1"></div>
+    </div>
+
+    <div id="main">
+        <div id="heading">
+            <div id="hh">
+                <h2>ADMIN PORTAL</h2>
+            </div>
+            <div id="options">
+                <div id="performance" class="options-button">
+                    <a style="text-decoration: none;"><button >Performance</button></a>
+                </div>
+                <div id="employee" class="options-button">
+                    <a style="text-decoration: none;"><button >Employee</button></a>
+                </div>
+                <div id="reviews" class="options-button">
+                    <a style="text-decoration: none;"><button >Reviews</button></a>
+                </div>
+                <div id="assign" class="options-button">
+                    <a style="text-decoration: none;"><button >Assign Employee</button></a>
+                </div>
+            </div>
+            <div id="logout">
+                <div id="name">
+                    <h2>&nbsp;&nbsp;<%=locals.name%>
+                    </h2>
+                </div>
+
+                <div id="button">
+                    <a style="text-decoration: none;" href="/employee/destroySession"><button>Log Out</button></a>
+                </div>
+            </div>
+        </div>
+
+        <div id="content">
+
+                <div id="employee-list">
+                    <%for(employee of employeeList){%>
+                        <div id="employee-list-item">
+                            <div id="employee-list-item-content">
+                                Employee Name : <%=employee.name%> <br>
+                                Pending Reviews : 3
+                            </div>
+                            <div id="employee-list-item-edit">
+                                <a style="text-decoration: none;"><button onclick="assign('<%= JSON.stringify(employee) %>')">Edit</button></a>
+                            </div>
+                        </div>
+                    <%}%>
+                </div>
+                <div id="employee-edit">
+                
+                </div>
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script id="flash-message">
+        <%if (flash.success && flash.success.length > 0) {%>
+            new Noty({
+                theme: 'relax',
+                type: 'success',
+                text: "<%=flash.success%>",
+                layout: 'topRight',
+                timeout: 500
+            }).show();
+                    <%}%>
+                     <%if (flash.error && flash.error.length > 0) {%>
+            new Noty({
+                theme: 'relax',
+                type: 'error',
+                text: "<%=flash.error%>",
+                layout: 'topRight',
+                timeout: 500
+            }).show();
+        <%}%>
+    </script>
+
+    <script>
+             function assign(employeeString) {
+                var employee = JSON.parse(employeeString);
+                console.log(employee.name);
+                var employeeEdit = document.getElementById('employee-edit');
+                employeeEdit.innerHTML = `
+                     <form action="/employee/hello" method="POST">
+                    <h3>Edit Employee :</h3>
+                
+                    <label for="name">Name</label>
+                    <input type="text" value="${employee.name}" id="name" name="name" disabled>
+                
+                    <label for="email">Email</label>
+                    <input type="email" value="${employee.email}" id="email" name="email" disabled>
+                
+                    <label for="department">Department</label>
+                    <input type="text" value="Administration" id="department" name="department" required>
+                    <br>
+                    <input type="submit" style="background-color: white; cursor : pointer; color: black; width: 100%;"><br>
+                    <button onclicnk="fdsf()">REMOVE EMPLOYEE</button><br><br>
+                    <button onclick="fsdfdsa()"> MAKE ADMIN</button>
+                </form>
+                
+            `
+
+            }
+
+    </script>
+
+
+
+
+
+
+
+</body>
+
+</html>

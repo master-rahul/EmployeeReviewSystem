@@ -8,5 +8,6 @@ router.post('/createSession', passport.authenticate('local', { failureRedirect:'
 router.get('/destroySession', employeeController.destroySession);
 router.get('/home', passport.checkAuthentication ,employeeController.home);
 router.get('/admin', passport.checkAuthentication, employeeController.admin);
+router.get('/employeeView', passport.checkAuthentication, employeeController.employeeView);
 
 module.exports = router;

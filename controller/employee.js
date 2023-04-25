@@ -49,5 +49,10 @@ module.exports.home = async function(request, response){
     return response.render('employeeHome');
 }
 module.exports.admin = async function (request, response) {
+   
     return response.render('admin');
+}
+module.exports.employeeView = async function (request, response) {
+    const employee = await Employee.find().select('-password');
+    return response.render('employeeView', { employeeList: employee });
 }
