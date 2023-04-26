@@ -234,6 +234,7 @@ button{
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width : 550px;
 }
 
 #review-form h2 {
@@ -267,6 +268,7 @@ button{
     border-radius: 3px;
     font-size: 16px;
     cursor: pointer;
+   
 }
 
 #review-form input[type="submit"]:hover,
