@@ -1,6 +1,6 @@
 body {
-    /* background-color: #080710; */
-    background-color: rgb(107, 65, 65);
+    background-color: #080710;
+    /* backgroxund-color: rgb(107, 65, 65); */
 }
 
 .background {
@@ -116,26 +116,34 @@ body {
     height: 50px;
     width: 25%;
     justify-content: space-between;
+    
 }
 
 #name {
     display: inline;
     width: 60%;
-    height: 50px;
+    height: 45px;
     overflow: scroll;
+    background-color: rgba(255, 255, 255, 0.13);
+     
+       
+     
+    font-size: 25px;
+    padding-top: 5px;
 }
 
 #button {
     display: inline;
     width: 40%;
     height: 50px;
+   
 }
 
 #button a button {
     cursor: pointer;
     color: black;
     font-family: monospace;
-    font-size: 15px;
+    font-size: 18px;
     width: 100%;
     height: 100%;
 }
@@ -153,150 +161,6 @@ body {
     justify-content: space-around;
 }
 
-#pending {
-    display: inline;
-    margin-top: 20px;
-    width: 45%;
-    height: 90%;
-    border: 1px solid white;
-    overflow: scroll;
-    background-color: rgba(255, 255, 255, 0.13);
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-}
-
-#completed {
-    margin-top: 20px;
-    display: inline;
-    width: 45%;
-    height: 90%;
-    border: 1px solid white;
-    overflow: scroll;
-    background-color: rgba(255, 255, 255, 0.13);
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-}
-
-
-.pending-list-item {
-    width: 95%;
-    height: 80px;
-    border: 1px solid white;
-    opacity: 100%;
-    display: flex;
-    margin-bottom: 20px;
-    background-color: rgba(35, 149, 255, 0.5);
-    box-shadow: 1px 5px 0px lightblue;
-    background-color: rgba(255, 255, 255, 0.13);
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-    margin-left: 10px;
-
-}
-
-.completed-list-item {
-    margin-left: 10px;
-    width: 95%;
-    height: 120px;
-    border: 1px solid white;
-    opacity: 100%;
-    display: flex;
-    margin-bottom: 20px;
-    background-color: rgba(35, 149, 255, 0.5);
-    box-shadow: 1px 5px 0px lightblue;
-    background-color: rgba(255, 255, 255, 0.13);
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-}
-
-#pending-item-content {
-    width: 60%;
-    height: 40px;
-    padding: 20px 20px;
-    border-right: 3px solid white;
-    opacity: 100%;
-    display: inline-block;
-    color: white;
-    font-size: 18px;
-    font-family: monospace;
-    overflow-x: scroll;
-    margin-bottom: 10px;
-}
-
-#item-dates {
-    display: flex;
-    width: 40%;
-    height: 80px;
-    display: inline-block;
-
-}
-
-#start-date {
-    width: 100%;
-}
-
-#end-date {
-    height: 50%;
-}
-
-#completed-item-content {
-    width: 65%;
-    height: 100px;
-    padding: 10px 10px;
-    border-right: 3px solid white;
-    opacity: 100%;
-    display: flex;
-    color: white;
-    font-size: 15px;
-    font-family: monospace;
-    overflow-x: scroll;
-    margin-bottom: 10px;
-    justify-content: space-around;
-}
-
-#text {
-
-    height: 100%;
-    display: inline-block;
-    width: 35%;
-}
-
-#data {
-    padding: 10px 10px;
-    height: 93%;
-    display: inline-block;
-    overflow-y: scroll;
-    width: 100%;
-    border: 0.5px solid white;
-    padding: 5px 5px;
-    border-radius: 2%;
-}
-
-.emp1,
-.emp2 {
-    text-align: center;
-    padding: 10px 5px;
-
-    border-bottom: 1px solid white;
-    height: 20px;
-    overflow: scroll;
-}
-
-.emp3 {
-    text-align: center;
-    padding: 10px 5px;
-
-    height: 20px;
-    overflow: scroll;
-}
 
 #options .options-button a button {
     color: black;
@@ -325,11 +189,13 @@ body {
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    overflow: scroll;
+    margin-left : 5px;
 }
 
 #employee-list-item {
     width: 100%;
-    height: 80px;
+    height: 60px;
     margin-bottom: 10px;
     display: flex;
     background-color: grey;
@@ -342,9 +208,9 @@ body {
 
 #employee-list-item-content {
     width: 70%;
-    height: 50%;
+    height: 80%;
 
-    padding: 20px 35px;
+    padding: 5px 35px;
     overflow: scroll;
     font-family: monospace;
     font-size: 20px;
@@ -370,7 +236,7 @@ body {
     height: 100%;
     color: black;
     font-family: monospace;
-    font-size: 20px;
+    font-size: 16px;
 
 
 }
@@ -382,12 +248,12 @@ body {
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-    padding: 50px 35px;
+    padding: 20px 35px;
 }
 
 #employee-edit form input {
     display: block;
-    height: 50px;
+    height: 40px;
     width: 95%;
     background-color: rgba(255, 255, 255, 0.07);
     border-radius: 3px;
@@ -410,7 +276,7 @@ body {
     color: #e5e5e5;
 }
 
-#employee-edit form button {
+#employee-edit button {
     color: black;
     background-color: white;
     cursor: pointer;
@@ -419,8 +285,28 @@ body {
     font-size: 18px;
     font-family: 'Poppins', sans-serif;
     letter-spacing: 0.5px;
+    border: none;
 }
 
 #employee-edit form button:hover {
     background-color: grey;
+}
+#emp-add{
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+}
+#emp-add div{
+    display: inline;
+    height: 100%;
+}
+#emp-add div a button{
+    height: 80%;
+    width: 100%;
+    color : black;
+    font-family: monospace;
+    font-size: 15px;
+    border-radius: 5px;
+    border : none;
+    padding: 0px 22px;
 }

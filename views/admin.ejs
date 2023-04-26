@@ -53,21 +53,29 @@
         </div>
 
         <div id="content">
+
+
+           
             <div id="pending">
                 <h3>&nbsp;&nbsp;PENDING REVIEWS</h3>
-                <div class="pending-list-item" id="pending-item-1">
-                    <div id="pending-item-content">
-                        Employee : &nbsp;Rahul Verma <br>
-                        Assigned To : &nbsp;Pooja Verma
-                    </div>
-                    <div id="item-dates">
-                        <div id="start-date">
-                            <p class="conent-pending-item">&nbsp;&nbsp;Start Date : 10 Aug 2023</p>
+                <%for(pendingReview of pendingReviewList){%>
+
+                    <div class="pending-list-item" id="pending-item-1">
+                        <div id="pending-item-content">
+                            Reviewe &nbsp;: <%=pendingReview.reviewe.name%> <br>
+                            Reviewer : <%=pendingReview.reviewer.name%>
                         </div>
-                        <div id="end-date">
-                            <p class="conent-pending-item">&nbsp;&nbsp;End Date : 12 Aug 2023</p>
+                        <div id="item-dates">
+                            <div id="start-date">
+                                <p class="conent-pending-item">&nbsp;&nbsp;Start Date : <%=pendingReview.createdAt.toLocaleDateString('en-us', {year: 'numeric', month: 'short', day: 'numeric' })%></p>
+                            </div>
+                            <div id="end-date">
+                                <p class="conent-pending-item">&nbsp;&nbsp;End Date : <%=pendingReview.endDate.toLocaleDateString('en-us', {  year: 'numeric', month: 'short', day: 'numeric' })%></p>
+                            </div>
                         </div>
-                    </div>
+                
+                <%}%>
+               
                 </div>
             
             
@@ -80,41 +88,57 @@
             <div id="completed">
             
                 <h3>&nbsp;&nbsp;COMPLETED REVIEWS</h3>
-                <div class="completed-list-item" id="completed-item-1">
-            
-                    <div id="completed-item-content">
+                <%for(completedReview of completedReviewList){%>
+
+                    <div class="completed-list-item" id="completed-item-1">
+                    
+                        <div id="completed-item-content">
+                            <div id="feedback">
+                                <div id="text" style="display: inline;">
+                                    Review :
+                                </div>
+                                <div id="data" style="display: block;">
+                                    <%=completedReview.feedback%>
+                                </div>
+                            </div>
+                            <br>
+                            <div id="overallPerformance" style="display: block;">
+                             Performance :
+                                <%for(var i = 0; i < completedReview.overallPerformance; i++){%>
+                                    <img src="/images/star.png" style="height: 20px; width: 20px; display: inline;">
+                                <%}%>
+                            </div><br>
+                            <div id="improvementAreas" style="display: flex;justify-content: space-between;">
+                                <div style="display: inline">
+                                        Improvement Areas :
+                                </div>
+                                <div style=" width: 50%;display: inline; border: 0.5px solid white; border-radius: 2px; padding :5px 5px;">   
+                                    <%for(improvement of completedReview.improvementArea){%>
+                                        <%=improvement%>,&nbsp;
+                                    <%}%>
+                                </div>
+                              
+                            </div>
+                    
+                        </div>
                         <div id="text">
-                            Review :
+                            <div id="employee-details">
+                                <div class="emp1">
+                                    Reviewe: <%=completedReview.reviewe.name%>
+                                </div>
+                                <div class="emp2">
+                                    Reviewer: <%=completedReview.reviewer.name%>
+                                </div>
+                                <div class="emp3">
+                                    Review Date : <%=completedReview.reviewDate.toLocaleDateString('en-us', {  year: 'numeric', month: 'short', day: 'numeric' })%>
+                                </div>
+                            </div>
                         </div>
-                        <div id="data" style="display: inline;">
-                            Now is the winter of our discontent
-                            Made glorious summer by this sun of York;
-                            And all the clouds that lour'd upon our house
-                            In the deep bosom of the ocean buried.
-                            Now are our brows bound with victorious wreaths;
-                            Our bruised arms hung up for monuments;
-                            Our stern alarums changed to merry meetings,
-                            Our dreadful marches to delightful measures.
-                            Grim-visaged war hath smooth'd his wrinkled front;
-                            And now, instead of mounting barded steeds
-                        </div>
-            
+                    
                     </div>
-                    <div id="text">
-                        <div id="employee">
-                            <div class="emp1">
-                                Employee Name : Rahul Verma
-                            </div>
-                            <div class="emp2">
-                                Assigned To : Pooja Verma
-                            </div>
-                            <div class="emp3">
-                                Review Date : 10 Aug 2023
-                            </div>
-                        </div>
-                    </div>
-            
-                </div>
+                    
+                <%}%>
+                
             </div>
            
 

@@ -1,9 +1,18 @@
 const mongoose = require('mongoose');
 const Employee = require('./employee');
-const pendingReview = new mongoose.Schema({
-    instruction:{
+const completedReview = new mongoose.Schema({
+    feedback:{
         type : String,
+        required : true,
     },
+    overallPerformance : {
+        type: Number,
+        required: true,
+    },
+    improvementArea : [{
+        type: String,
+        required: true,
+    }],
     reviewe:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Employee',
@@ -14,11 +23,11 @@ const pendingReview = new mongoose.Schema({
         ref : 'Employee',
         required : true
     },
-    endDate : {
+    reviewDate : {
         type : Date,
         required : true
     }
 }, { timestamps: true });
 
-const PendingReview = mongoose.model('PendingReview', pendingReview);
-module.exports = PendingReview;
+const CompletedReview = mongoose.model('CompletedReview', completedReview);
+module.exports = CompletedReview;

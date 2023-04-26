@@ -9,5 +9,8 @@ router.get('/destroySession', employeeController.destroySession);
 router.get('/home', passport.checkAuthentication ,employeeController.home);
 router.get('/admin', passport.checkAuthentication, employeeController.admin);
 router.get('/employeeView', passport.checkAuthentication, employeeController.employeeView);
+router.get('/remove/:id', passport.checkAuthentication, employeeController.remove);
+router.get('/setAdmin/:id', passport.checkAuthentication, employeeController.setAdmin);
+
 
 module.exports = router;

@@ -103,21 +103,30 @@ button{
     border-bottom: 1px solid white;
 }
 #pending-list{
-    height: 700px;
-    width: 100%;
-    background-color: rgba(145, 197, 247, 0.5);
+    height: 680px;
+    width: 95%;
+   margin-left: 15px;
+   margin-top: 10px;
     overflow-y: scroll;
+    background-color: rgba(255, 255, 255, 0.01);
+        border-radius: 10px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     
 }
 .pending-list-item{
-    width: 100%;
+    margin-top: 10px;
+    margin-left: 20px;
+    width: 95%;
     height: 100px;
-    border: 1px solid white;
     opacity: 100%;
     display: flex;
     margin-bottom: 20px;
-    background-color: rgba(35, 149, 255, 0.5);
-    box-shadow: 1px 5px 0px lightblue;
+    background-color: rgba(255, 255, 255, 0.13);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 1px solid white;
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
 }
 #item-content{
     width: 55%;
@@ -134,26 +143,31 @@ button{
 }
 #item-dates{
     display: flex;
-    width: 30%;
+    width: 35%;
     height: 100px;
     display: inline-block;
 }
 #start-date{ 
     width: 100%;
     border-bottom: 1px solid white;
+    height: 35px;
 }
 #end-date{
    
     width: 100%;
 }
 .view-list-item{
+    margin-top: 2px;
     width: 15%;
-    border-left: 1px solid white;
-    border-right: 1px solid white;
+    height: 95%;    
+    border-radius: 20px;
+    
 }
 .view-list-item button{
-    background-color: blueviolet;
+    background-color: rgb(131, 92, 92);
+    border-radius: 5px;
     color: white;
+    border-left: 1px solid white;
 }
 .view-list-item button:hover {
     background-color: blue;
@@ -269,3 +283,28 @@ button{
     margin: 0 auto;
 }
 
+input[type="range"] {
+    --webkit-appearance: none;
+    width: 60%;
+    height: 15px;
+    background-color: #ddd;
+    border-radius: 5px;
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: #00bcd4;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    background-color: #008ba3;
+}

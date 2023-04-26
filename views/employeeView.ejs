@@ -28,23 +28,23 @@
                 <h2>ADMIN PORTAL</h2>
             </div>
             <div id="options">
-                <div id="performance" class="options-button">
-                    <a style="text-decoration: none;"><button >Performance</button></a>
-                </div>
-                <div id="employee" class="options-button">
-                    <a style="text-decoration: none;"><button >Employee</button></a>
-                </div>
-                <div id="reviews" class="options-button">
-                    <a style="text-decoration: none;"><button >Reviews</button></a>
-                </div>
-                <div id="assign" class="options-button">
-                    <a style="text-decoration: none;"><button >Assign Employee</button></a>
-                </div>
+            <div id="performance" class="options-button">
+                <a href="/employee/admin" style="text-decoration: none;"><button>Performance</button></a>
+            </div>
+            <div id="employee" class="options-button">
+                <a href="/employee/employeeView" style="text-decoration: none;"><button>Employee</button></a>
+            </div>
+            <div id="reviews" class="options-button">
+                <a href="/employee/reviews" style="text-decoration: none;"><button>Reviews</button></a>
+            </div>
+            <div id="assign" class="options-button">
+                <a href="/employee/assign" style="text-decoration: none;"><button>Assign Employee</button></a>
+            </div>
             </div>
             <div id="logout">
                 <div id="name">
-                    <h2>&nbsp;&nbsp;<%=locals.name%>
-                    </h2>
+                    &nbsp;&nbsp;<%=locals.name%>
+                    
                 </div>
 
                 <div id="button">
@@ -56,6 +56,15 @@
         <div id="content">
 
                 <div id="employee-list">
+                    <div id="emp-add">
+                        <div>
+                            <h2> Employee List : </h2>
+                        </div>
+                        <div>
+                            <a style="text-decoration: none;"><button onclick="assign()">Add Employee</button></a>
+                        </div>
+                    </div>
+                    
                     <%for(employee of employeeList){%>
                         <div id="employee-list-item">
                             <div id="employee-list-item-content">
@@ -71,33 +80,9 @@
                 <div id="employee-edit">
                 
                 </div>
-
-
-
-
-
-
-
         </div>
 
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     <script id="flash-message">
@@ -122,14 +107,41 @@
     </script>
 
     <script>
-             function assign(employeeString) {
-                var employee = JSON.parse(employeeString);
-                console.log(employee.name);
+        function assign(employeeString) {
+            if(employeeString == null){
                 var employeeEdit = document.getElementById('employee-edit');
                 employeeEdit.innerHTML = `
-                     <form action="/employee/hello" method="POST">
-                    <h3>Edit Employee :</h3>
+                <form action="/employee/add" method="POST">
+                    
+                    <h3>Employee Details</h3>
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Employee Name">
                 
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="Email">
+                
+                    <label for="department">Department</label>
+                    <input type="text" id="department" name="department" required placeholder="Department">
+                
+                    <label for="password">Password</label>
+                    <input type="password" placeholder="Password" id="password" name="password" required>
+
+                    <label for="password">Confirm Password</label>
+                    <input type="password" placeholder="Password" id="confirm_password" name="confirm_password" required>
+                    <br>
+                    <input type="submit" style="background-color: white; cursor : pointer; color: black; width: 100%;"><br>
+
+                </form>
+                `
+            }else{
+                var employee = JSON.parse(employeeString);
+                var employeeEdit = document.getElementById('employee-edit');
+                employeeEdit.innerHTML = `
+                <form action="/employee/edit" method="POST">
+                    <h3>Edit Employee :</h3>
+                    
+                    <input type="hidden" value="${employee._id}" id="id" name="id" disabled>
+
                     <label for="name">Name</label>
                     <input type="text" value="${employee.name}" id="name" name="name" disabled>
                 
@@ -137,17 +149,16 @@
                     <input type="email" value="${employee.email}" id="email" name="email" disabled>
                 
                     <label for="department">Department</label>
-                    <input type="text" value="Administration" id="department" name="department" required>
+                    <input type="text" value="${employee.department}" id="department" name="department" required>  
                     <br>
                     <input type="submit" style="background-color: white; cursor : pointer; color: black; width: 100%;"><br>
-                    <button onclicnk="fdsf()">REMOVE EMPLOYEE</button><br><br>
-                    <button onclick="fsdfdsa()"> MAKE ADMIN</button>
-                </form>
-                
-            `
-
+                    </form>
+                    <br>
+                    <a href="/employee/remove/${employee._id}"><button>REMOVE EMPLOYEE</button></a><br><br>
+                    <a href="/employee/setAdmin/${employee._id}"><button> MAKE ADMIN</button></a>
+                `
             }
-
+        }
     </script>
 
 

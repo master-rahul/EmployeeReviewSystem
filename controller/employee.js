@@ -1,4 +1,7 @@
 const Employee = require('../models/employee');
+const PendingReview = require('../models/pendingReview');
+const CompletedReview = require('../models/completedReview');
+
 module.exports.add = async function (request, response) {
     if (request.body.password != request.body.confirm_password){
         request.flash('error', 'Password does not match');
@@ -42,17 +45,32 @@ module.exports.destroySession = async function(request, response){
             return response.redirect('/');
         }
     });
-
 }
 
 module.exports.home = async function(request, response){
-    return response.render('employeeHome');
+    const pendingReview = await PendingReview.find({ 'reviewer': request.user.id}).populate({path : 'reviewer reviewe', select : '-password'});
+    console.log(request.user.id);
+    console.log("Pending Reviews :" ,pendingReview);
+    return response.render('employeeHome', {pendingReviewList : pendingReview});
 }
 module.exports.admin = async function (request, response) {
-   
-    return response.render('admin');
+    const pendingReview = await PendingReview.find().populate({path : 'reviewer reviewe', select : 'name'});
+    console.log(pendingReview);
+    const completedReview = await CompletedReview.find().populate({ path: 'reviewer reviewe', select: 'name' });
+    return response.render('admin', {pendingReviewList : pendingReview, completedReviewList : completedReview});
 }
 module.exports.employeeView = async function (request, response) {
     const employee = await Employee.find().select('-password');
     return response.render('employeeView', { employeeList: employee });
+}
+
+module.exports.remove = async function (request, response) {
+    const employee = await Employee.findByIdAndDelete(request.params.id);
+    return response.redirect('back');
+}
+module.exports.setAdmin = async function (request, response) {
+    const employee = await Employee.findById(request.params.id);
+    employee.admin = true;
+    employee.save();
+    return response.redirect('back');
 }
