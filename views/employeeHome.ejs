@@ -34,51 +34,30 @@
                 </div>
                 <div id="pending-list">
 
+                    <%for(pendingReview of pendingReviewList){%>
 
 
-                    <div class="pending-list-item" id="pending-item-1">
-                        <div id="item-content">
-                            Employee Review Pending : Rahul Verma
-                            <p class="conent-pending-item">Content : Employee Review Pending : Rahul VermaEmployee Review Pending : Rahul
-                                VermaEmployee Review Pending : Rahul VermaEmployee Review Pending : Rahul Verma</p>
-                        </div>
-                        <div id="item-dates">
-                            <div id="start-date">
-                                <p class="conent-pending-item">&nbsp;Start Date : 10 Aug 2023</p>
+                        <div class="pending-list-item" id="pending-item-1">
+                        
+                        
+                            <div id="item-content">
+                                Employee Name : <%=pendingReview.reviewe.name%>
+                                <p class="conent-pending-item">Instructions :  <%=pendingReview.instruction%></p>
                             </div>
-                            <div id="end-date">
-                                <p class="conent-pending-item">&nbsp;End Date : 12 Aug 2023</p>
+                            <div id="item-dates">
+                                <div id="start-date">
+                                    <p class="conent-pending-item">&nbsp;Start Date : <%=pendingReview.createdAt.toLocaleDateString('en-us', {  year: 'numeric', month: 'short', day: 'numeric' })%></p>
+                                </div>
+                                <div id="end-date">
+                                    <p class="conent-pending-item">&nbsp;End Date : <%=pendingReview.endDate.toLocaleDateString('en-us', { year: 'numeric' , month: 'short' , day: 'numeric' })%></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="view-list-item">
-                            <button class="review" onclick="openReviewForm('Rahul Verma', 'pending-item-1')">Review</button>
-                        </div>
-                    </div>
-
-
-
-                    <div class="pending-list-item" id="pending-item-2">
-                        <div id="item-content">
-                            Employee Review Pending : Rahul Verma
-                            <p class="conent-pending-item">Content : Employee Review Pending : Rahul VermaEmployee Review Pending : Rahul
-                                VermaEmployee Review Pending : Rahul VermaEmployee Review Pending : Rahul Verma</p>
-                        </div>
-                        <div id="item-dates">
-                            <div id="start-date">
-                                <p class="conent-pending-item">&nbsp;Start Date : 10 Aug 2023</p>
-                            </div>
-                            <div id="end-date">
-                                <p class="conent-pending-item">&nbsp;End Date : 12 Aug 2023</p>
+                            <div class="view-list-item">
+                                <button class="review" onclick="openReviewForm('<%= JSON.stringify(pendingReview)%>')">Review</button>
                             </div>
                         </div>
-                        <div class="view-list-item">
-                            <button class="review" onclick="openReviewForm('Rahul Verma', 'pending-item-1')">Review</button>
-                        </div>
-                    </div>
-
-
-
-
+                    
+                    <%}%>
 
                 </div>
             </div>
@@ -108,19 +87,22 @@
                 <label for="review-date">Review Date:</label>
                 <input type="date" id="review-date" name="review-date"  disabled><br><br>
                 <label for="review-comments">Review Comments:</label>
-                <textarea id="review-comments" name="review-comments" rows="6" cols="50"></textarea><br><br>
-                <input type="submit" value="Submit" onclick="submitReviewForm()" style="text-align: center;">
+                <textarea id="review-comments" name="review-comments" rows="4" cols="50"></textarea><br><br>
+                <label for="overallPerformance">Overall Performance:</label>
+                <input type="range" min="0" max="5" id="overall-performance" name="overallPerformance" style="color : yellow">
+                <input type="submit" style="width: 100%; height: 45px;" value="Submit" onclick="submitReviewForm()" style="text-align: center;">
             </form>
-            <button onclick="closeReviewForm()">Close</button>
+            <button style="width: 100%; height: 45px;" onclick="closeReviewForm()">Close</button>
         </div>
     </div>
 
     <script>
         var idd;
-        function openReviewForm(name, id) {
-            idd = id;
+        function openReviewForm(pendingReview) {
+            var pendingRev = JSON.parse(pendingReview);
+            console.log(pendingRev);
             document.getElementById("overlay").style.display = "block";
-            document.getElementById("employee-name").value = name;
+            document.getElementById("employee-name").value = pendingRev.reviewe.name;
             var today = new Date().toISOString().substr(0, 10);
             document.getElementById("review-date").value = today;
         }

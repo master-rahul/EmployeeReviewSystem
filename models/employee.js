@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const PendingReview = require('./pendingReview');
+const CompletedReview = require('./completedReview');
 const employeeSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -13,6 +15,18 @@ const employeeSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    deparment : {
+        type : String,
+        requried : true,
+    },
+    pendingReviews : [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'PendingReviews'
+    }],
+    completedReviews : [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'CompletedReview'
+    }],
     admin : {
         type : Boolean,
         required : true,
