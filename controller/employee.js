@@ -49,13 +49,10 @@ module.exports.destroySession = async function(request, response){
 
 module.exports.home = async function(request, response){
     const pendingReview = await PendingReview.find({ 'reviewer': request.user.id}).populate({path : 'reviewer reviewe', select : '-password'});
-    console.log(request.user.id);
-    console.log("Pending Reviews :" ,pendingReview);
     return response.render('employeeHome', {pendingReviewList : pendingReview});
 }
 module.exports.admin = async function (request, response) {
     const pendingReview = await PendingReview.find().populate({path : 'reviewer reviewe', select : 'name'});
-    console.log(pendingReview);
     const completedReview = await CompletedReview.find().populate({ path: 'reviewer reviewe', select: 'name' });
     return response.render('admin', {pendingReviewList : pendingReview, completedReviewList : completedReview});
 }
@@ -72,5 +69,24 @@ module.exports.setAdmin = async function (request, response) {
     const employee = await Employee.findById(request.params.id);
     employee.admin = true;
     employee.save();
+    return response.redirect('back');
+}
+module.exports.addReview = async function (request, response) {
+    console.log(request.body);
+    const pendingReview = await PendingReview.findById(request.body.pendingId);
+    if (pendingReview) {
+        const completedReview = await CompletedReview.create({
+            feedback: request.body.reviewComments,
+            overallPerformance: request.body.overallPerformance,
+            improvementArea: request.body.improvementArea.split(","),
+            reviewe : pendingReview.reviewe,
+            reviewer : pendingReview.reviewer,
+            reviewDate : new Date()
+        });
+        const employee = await Employee.findByIdAndUpdate(pendingReview.reviewer, {$push : {completedReviews : completedReview}, $pull : {pendingReviews : pendingReview.id}});
+        await PendingReview.findByIdAndDelete(request.body.pendingId);
+    }
+   
+    
     return response.redirect('back');
 }
