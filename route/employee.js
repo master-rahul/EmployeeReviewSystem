@@ -12,6 +12,8 @@ router.get('/employeeView', passport.checkAuthentication, employeeController.emp
 router.get('/remove/:id', passport.checkAuthentication, employeeController.remove);
 router.get('/setAdmin/:id', passport.checkAuthentication, employeeController.setAdmin);
 router.post('/addReview', passport.checkAuthentication, employeeController.addReview);
+router.get('/employeeReview', passport.checkAuthentication, employeeController.employeeReview);
+
 
 
 module.exports = router;

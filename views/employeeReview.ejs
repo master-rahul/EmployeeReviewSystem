@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Employee</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/employeeReview.css">
+
+</head>
+
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <div class="background1">
+        <div class="shape1"></div>
+        <div class="shape1"></div>
+    </div>
+
+    <div id="main">
+        <div id="heading">
+            <div id="hh">
+                <h2>ADMIN PORTAL</h2>
+            </div>
+            <div id="options">
+                <div id="performance" class="options-button">
+                    <a href="/employee/admin" style="text-decoration: none;"><button>Performance</button></a>
+                </div>
+                <div id="employee" class="options-button">
+                    <a href="/employee/employeeView" style="text-decoration: none;"><button>Employee</button></a>
+                </div>
+                <div id="reviews" class="options-button">
+                    <a href="/employee/employeeReview" style="text-decoration: none;"><button>Reviews</button></a>
+                </div>
+                <div id="assign" class="options-button">
+                    <a href="/employee/assign" style="text-decoration: none;"><button>Assign Employee</button></a>
+                </div>
+            </div>
+            <div id="logout">
+                <div id="name">
+                    &nbsp;&nbsp;<%=locals.name%>
+
+                </div>
+
+                <div id="button">
+                    <a style="text-decoration: none;" href="/employee/destroySession"><button>Log Out</button></a>
+                </div>
+            </div>
+        </div>
+
+        <div id="content">
+
+            <div id="review-list">
+                <div id="review-add">
+                    <div>
+                        <h2> Review List : </h2>
+                    </div>
+                    <div>
+                        <a style="text-decoration: none;"><button onclick="assign()">Add Employee</button></a>
+                    </div>
+                </div>
+                    <%for(pendingReview of pendingReviewList){%>
+                        <div id="review-list-item">
+                            <div id="review-list-item-content">
+                                Reviewer : <%=pendingReview.reviewer.name%><br>
+                                Reviewe : <%=pendingReview.reviewe.name%>
+                            </div>
+                            <div id="dates">
+                                <div id="start-date">
+                                    Start : <%=pendingReview.createdAt.toLocaleDateString('en-us', {year: 'numeric', month: 'short', day: 'numeric' })%>
+                                </div>
+                                <div id="end-date">
+                                    End : <%=pendingReview.endDate.toLocaleDateString('en-us', {year: 'numeric', month: 'short', day: 'numeric' })%>
+                                </div>
+                            </div>
+                            <div id="review-list-item-edit">
+                                <a style="text-decoration: none;"><button
+                                        onclick="assign()">Edit</button></a>
+                            </div>
+                        </div>
+                    <%}%>
+            </div>
+            <div id="review-edit">
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <script id="flash-message">
+        <%if (flash.success && flash.success.length > 0) {%>
+            new Noty({
+                theme: 'relax',
+                type: 'success',
+                text: "<%=flash.success%>",
+                layout: 'topRight',
+                timeout: 500
+            }).show();
+                    <%}%>
+                     <%if (flash.error && flash.error.length > 0) {%>
+            new Noty({
+                theme: 'relax',
+                type: 'error',
+                text: "<%=flash.error%>",
+                layout: 'topRight',
+                timeout: 500
+            }).show();
+        <%}%>
+    </script>
+
+   
+</body>
+
+</html>

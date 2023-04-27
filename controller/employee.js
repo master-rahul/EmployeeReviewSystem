@@ -49,7 +49,8 @@ module.exports.destroySession = async function(request, response){
 
 module.exports.home = async function(request, response){
     const pendingReview = await PendingReview.find({ 'reviewer': request.user.id}).populate({path : 'reviewer reviewe', select : '-password'});
-    return response.render('employeeHome', {pendingReviewList : pendingReview});
+    const completedReview = await CompletedReview.find({'reviewer' : request.user.id}).populate({path : 'reviewer reviewe', select : 'name'});
+    return response.render('employeeHome', {pendingReviewList : pendingReview, completedReviewList : completedReview});
 }
 module.exports.admin = async function (request, response) {
     const pendingReview = await PendingReview.find().populate({path : 'reviewer reviewe', select : 'name'});
@@ -89,4 +90,9 @@ module.exports.addReview = async function (request, response) {
    
     
     return response.redirect('back');
+}
+
+module.exports.employeeReview = async function (request, response) {
+    const pendingReview = await PendingReview.find().populate({path : 'reviewer reviewe' , select :'name'});
+    return response.render('employeeReview', {pendingReviewList : pendingReview});
 }

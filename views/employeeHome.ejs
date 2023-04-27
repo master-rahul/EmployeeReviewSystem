@@ -21,7 +21,7 @@
     <div id="main">
        <div id="header">
             <div id="left">
-
+                &nbsp;EMPLOYEE PORTAL
             </div>
             <div id="right">
                 <a style="text-decoration: none;" href="/employee/destroySession"><button>Log Out</button></a>
@@ -68,8 +68,63 @@
                     &nbsp; Completed Reviews
                 </div>
                 <div id="completed-list">
+                    <!-- <div id="completed-list-item">
+                        <div id="employeeName">
+                           &nbsp;Employee Name : Rahul Verma
+                        </div>
+                        <div id="feedback">
+                            &nbsp;Feedback :
+                            <div id="feedback-content">
+                                fsdlkafjldsakjfldsajfla dafsjsalkfjlskdjflkads fsdlkafjldsakjfldsajfla dafsjsalkfjlskdjflkads
+                                fsdlkafjldsakjfldsajfla dafsjsalkfjlskdjflkads
+                                fsdlkafjldsakjfldsajfla dafsjsalkfjlskdjflkads
 
-                </div>
+                            </div>
+                        </div>
+                        <div id="reviewDate">
+                                &nbsp;Review Date : 30 Sug 2023
+                        </div>
+                    </div> -->
+                        <%for(completedReview of completedReviewList){%>
+                            <div class="completed-list-item" id="completed-item-1">
+                            
+                                <div id="completed-item-content">
+                                    <div id="employeeName">
+                                        Employee Name : Rahul Verma
+                                    </div>
+                                    <div id="feedback">
+                                        <div id="text" style="display: inline;">
+                                            Review :
+                                        </div>
+                                        <div id="data" style="display: block;">
+                                            <%=completedReview.feedback%>
+                                        </div>
+                                    </div>
+                      
+                                    <div id="overallPerformance" style="display: block;">
+                                        Performance :
+                                        <%for(var i=0; i < completedReview.overallPerformance; i++){%>
+                                            <img src="/images/star.png" style="height: 20px; width: 20px; display: inline;">
+                                            <%}%>
+                                    </div><br>
+                                    <div id="improvementAreas" style="display: flex;justify-content: space-between;">
+                                        <div style="display: inline">
+                                            Improvement Areas :
+                                        </div>
+                                        <div style=" width: 40%;display: inline; border: 0.5px solid white; border-radius: 2px; padding :5px 5px;">
+                                            <%for(improvement of completedReview.improvementArea){%>
+                                                <%=improvement%>,&nbsp;
+                                             <%}%>
+                                        </div>
+                            
+                                    </div>
+                            
+                                </div>
+                             </div>
+
+                        <%}%>
+
+                
             </div>
        </div>
     </div>

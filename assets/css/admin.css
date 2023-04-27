@@ -238,16 +238,16 @@ cursor: pointer;
 }
 #completed-item-content{
     width: 65%;
-        height: 100px;
-        padding: 10px 10px;
-        border-right: 3px solid white;
-        opacity: 100%;
-        color: white;
-        font-size: 14px;
-        font-family: monospace;
-        overflow-x: scroll;
-        margin-bottom: 10px;
-        justify-content: space-around;
+    height: 100px;
+    padding: 10px 10px;
+    border-right: 3px solid white;
+    opacity: 100%;
+    color: white;
+    font-size: 14px;
+    font-family: monospace;
+    overflow-x: scroll;
+    margin-bottom: 10px;
+    justify-content: space-around;
 }
 #feedback{
     display: flex;
