@@ -16,6 +16,7 @@ const pendingReview = new mongoose.Schema({
     },
     endDate : {
         type : Date,
+        default: Date.now,
         required : true
     }
 }, { timestamps: true });

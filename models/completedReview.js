@@ -25,6 +25,7 @@ const completedReview = new mongoose.Schema({
     },
     reviewDate : {
         type : Date,
+        default: Date.now,
         required : true
     }
 }, { timestamps: true });

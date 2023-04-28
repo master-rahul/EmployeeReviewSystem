@@ -93,6 +93,19 @@ module.exports.addReview = async function (request, response) {
 }
 
 module.exports.employeeReview = async function (request, response) {
+    try {
+        const newPendingReview = new PendingReview({
+            instruction: "Review the report",
+            reviewe: "6449316d40c6c069a8ea4752", // Replace with an actual employee ID
+            reviewer: "6449316d40c6c069a8ea4752", // Replace with an actual employee ID
+            endDate: new Date()
+        });
+        const savedPendingReview = await newPendingReview.save();
+        console.log('New pendingReview created:', savedPendingReview);
+    } catch (error) {
+        console.error('Error creating pendingReview:', error);
+    }
     const pendingReview = await PendingReview.find().populate({path : 'reviewer reviewe' , select :'name'});
-    return response.render('employeeReview', {pendingReviewList : pendingReview});
+    const employee = await Employee.find().select('-password');
+    return response.render('employeeReview', {pendingReviewList : pendingReview, employeeList : employee});
 }

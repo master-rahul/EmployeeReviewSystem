@@ -41,7 +41,7 @@
                         
                         
                             <div id="item-content">
-                                Employee Name : <%=pendingReview.reviewe.name%>
+                                Employee Name : <%=pendingReview.reviewe.name%>  
                                 <p class="conent-pending-item">Instructions :  <%=pendingReview.instruction%></p>
                             </div>
                             <div id="item-dates">
@@ -100,26 +100,33 @@
                                             <%=completedReview.feedback%>
                                         </div>
                                     </div>
-                      
+                                    <div id="reviewDate">
+                                        Review Date : 30 Sug 2023
+                                    </div>
                                     <div id="overallPerformance" style="display: block;">
                                         Performance :
                                         <%for(var i=0; i < completedReview.overallPerformance; i++){%>
                                             <img src="/images/star.png" style="height: 20px; width: 20px; display: inline;">
+                                        <%}%>
+                                        <%for(var i=0; i < (5 - completedReview.overallPerformance); i++){%>
+                                            <img src="/images/_star.png" style="height: 20px; width: 20px; display: inline;">
                                             <%}%>
                                     </div><br>
                                     <div id="improvementAreas" style="display: flex;justify-content: space-between;">
                                         <div style="display: inline">
                                             Improvement Areas :
                                         </div>
-                                        <div style=" width: 40%;display: inline; border: 0.5px solid white; border-radius: 2px; padding :5px 5px;">
+                                        <div style=" width: 50%;display: inline; border: 0.5px solid white; border-radius: 2px; padding :5px 5px;">
                                             <%for(improvement of completedReview.improvementArea){%>
                                                 <%=improvement%>,&nbsp;
                                              <%}%>
                                         </div>
                             
                                     </div>
+                                   
                             
                                 </div>
+
                              </div>
 
                         <%}%>

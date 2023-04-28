@@ -72,7 +72,7 @@ body {
     margin-top: 5vh;
     height: 90vh;
     width: 90vw;
-    min-height: 800px;
+    min-height: 860px;
     min-width: 1200px;
     position: absolute;
     margin-left: 5vw;
@@ -138,17 +138,16 @@ cursor: pointer;
 }
 #content{
     display: flex;
-    margin-top: 40px;
-    height: 80%;
+    margin-top: 20px;
+    height: 92%;
     width: 100%;
-    border: 1px solid white;
     justify-content: space-around;
 }
 #pending{
     display: inline;
-    margin-top: 20px;
+    margin-top: 10px;
     width: 45%;
-    height: 90%;
+    height: 95%;
     border: 1px solid white;
     overflow: scroll;
     background-color: rgba(255, 255, 255, 0.13);
@@ -158,10 +157,10 @@ cursor: pointer;
         box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
 }
 #completed {
-    margin-top: 20px;
+    margin-top: 10px;
     display: inline;
     width: 45%;
-    height: 90%;
+    height: 95%;
     border: 1px solid white;
     overflow: scroll;
     background-color: rgba(255, 255, 255, 0.13);
