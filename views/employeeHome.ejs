@@ -101,7 +101,7 @@
                                         </div>
                                     </div>
                                     <div id="reviewDate">
-                                        Review Date : 30 Sug 2023
+                                        Review Date : <%=completedReview.createdAt.toLocaleDateString('en-us', {  year: 'numeric', month: 'short', day: 'numeric' })%>
                                     </div>
                                     <div id="overallPerformance" style="display: block;">
                                         Performance :

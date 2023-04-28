@@ -30,6 +30,9 @@ const employeeSchema = new mongoose.Schema({
     admin : {
         type : Boolean,
         required : true,
+    },
+    department : {
+        type : String
     }
 }, { timestamps: true });
 

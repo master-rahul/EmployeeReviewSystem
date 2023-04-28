@@ -38,7 +38,7 @@
                     <a href="/employee/employeeReview" style="text-decoration: none;"><button>Reviews</button></a>
                 </div>
                 <div id="assign" class="options-button">
-                    <a href="/employee/assign" style="text-decoration: none;"><button>Assign Employee</button></a>
+                    <button style="color : black;" onclick="openReviewForm()">Assign </button></a>
                 </div>
             </div>
             <div id="logout">
@@ -98,19 +98,49 @@
                             <div id="review-list-item-edit">
 
                                 <a style="text-decoration: none;"><button onclick="assign('<%=JSON.stringify(pendingReview)%>', '<%=JSON.stringify(employeeList)%>')">Edit</button></a>
-                                    <a href='/review/delete/<%=pendingReview.id%>'style="text-decoration: none;"><button>Delete</button></a>
+                                    <a href='/review/delete/<%=pendingReview.id%>/<%=pendingReview.reviewer.id%>'style="text-decoration: none;"><button>Delete</button></a>
                             </div>
                         </div>
                     <%}%>
                 </div>
             </div>
-            <div id="review-edit">
-
-            </div>
+            
         </div>
 
 
-
+        <div id="overlay">
+            <div id="review-form">
+                <h2>Employee Review Form</h2>
+                <form action="/review/addRev" method="POST">
+                    <label>Reviewer :</label>
+                    <select onchange="updateSelect2()" id="select1" name="reviewer"style="color: black;margin-top: 10px; width: 60%; overflow-x: scroll; white-space: nowrap; height: 30px;">
+                        <%for(employee of employeeList){%>
+                            <option value="<%=employee.id%>">
+                                <%=employee.name%>
+                            </option>
+                            <%}%>
+                    </select>
+                    <label>Reviewe :</label>
+                    <select name="reviewe" id="select2" 
+                        style="color: black;margin-top: 10px; width: 60%; overflow-x: scroll; white-space: nowrap; height: 30px;">
+                        
+                        <%for(employee of employeeList){%>
+                            <option value="<%=employee.id%>">
+                                <%=employee.name%>
+                            </option>
+                            <%}%>
+                    </select>
+                    <label>Pending Date:</label>
+                    <input type="date" id="pending-date" name="reviewDate" style="width: 60%;" required><br><br>
+                    <label>Instruction :</label>
+                    <textarea id="instuction" name="instruction" rows="4" cols="50" required></textarea><br><br>
+                    <input type="submit" style="width: 100%; height: 45px;" value="Submit" onclick="submitReviewForm()"
+                        style="text-align: center;">
+        
+                </form>
+                <button style="width: 100%; height: 45px;" onclick="closeReviewForm()">Close</button>
+            </div>
+        </div>
         
         
        
@@ -174,7 +204,7 @@
                         startDate.innerHTML = `Start : ${dt.substring(0,10)}`;
                         dt = pendingReview.endDate;
                         endDate.innerHTML = `End : ${dt.substring(0, 10) }`;
-                        reviewListItemEdit.innerHTML =  `<a style="text - decoration: none; "><button onclick = "assign(${pendingReview}, ${employeeList})" > Edit</button ></a> <a href="/review/delete/${pendingReview.id}" style="text-decoration: none;"><button>Delete</button ></a>`;
+                        reviewListItemEdit.innerHTML =  `<a style="text - decoration: none; "><button onclick = "assign(${pendingReview}, ${employeeList})" > Edit</button ></a> <a href="/review/delete/${pendingReview.id}/${pendingReview.reviewer.id}" style="text-decoration: none;"><button>Delete</button ></a>`;
                         dates.appendChild(startDate);
                         dates.appendChild(endDate);
                         reviewListItem.appendChild(reviewListItemContent);
@@ -190,9 +220,12 @@
                 var employeeList = JSON.parse(employee);
                 //document.findElementsByClassName(`review-list-item-${pendingReview.id}`);
                 console.log(employeeList);
-                var reviewEdit = document.getElementById('review-edit');
+                var reviewEdit = document.createElement('div');
+                reviewEdit.id="review-edit";
                 var reviewerSelect = document.createElement('select');
+                reviewerSelect.name = "reviewer"
                 reviewerSelect.id = "reviewer-list";
+                //reviewerSelect.addEventListener('onchange', updateSelect);
                 var optionElement = document.createElement('option');
                 optionElement.value = pendingReview.reviewer._id;
                 optionElement.textContent = pendingReview.reviewer.name;
@@ -206,6 +239,7 @@
                     }
                 }
                 var revieweSelect = document.createElement('select');
+                revieweSelect.name = "reviewe";
                 revieweSelect.id = "reviewe-list";
                 optionElement = document.createElement('option');
                 optionElement.value = pendingReview.reviewe._id;
@@ -221,31 +255,97 @@
                 }
 
                 reviewEdit.innerHTML = `
-                        <form action="/employee/edit" method="POST">
-                        <h3>Edit Review:</h3><br>
-                        <label>Reviewer Name</label> <br>
-                        ${reviewerSelect.outerHTML}<br>
-                        <label>Reviewe Name</label><br>
-                        ${revieweSelect.outerHTML}<br>
-                        <label>Instruction</label><br>
-                        <textarea id="message" name="message" rows="4" cols="50">${pendingReview.instruction}</textarea><br>
-                        <label>Pending Date</label><br>
-                        <input value="2024-12-12" type="date" style="color : white;" id="endDateReview" style="color: black;margin-top: 10px; width: 130px; overflow-x: scroll; white-space: nowrap; height: 25px;"><br>
-                        <input type="submit" style="background-color: white; cursor: pointer; color: black; width: 100%;"><br>
+                        <form action="/review/edit" method="POST">
+                            <h3>Edit Review:</h3><br>
+                            <label>Reviewer Name</label> <br>
+                            ${reviewerSelect.outerHTML}<br>
+                            <label>Reviewe Name</label><br>
+                            ${revieweSelect.outerHTML}<br>
+                            <label>Instruction</label><br>
+                            <textarea id="message" name="message" rows="4" cols="50">${pendingReview.instruction}</textarea><br>
+                            <label>Pending Date</label><br>
+                            <input value="2024-12-12" type="date" id="endDateReview" name="endDate" style="color: white; width: 60%; overflow-x: scroll; white-space: nowrap; height: 25px;"><br>
+                            <input type="hidden" name="pendingReviewId"  value = "${pendingReview._id}">
+                            <input type="hidden" name="reviewerId"  value = "${pendingReview.reviewer._id}">
+                            <input type="submit" style="background-color: white; cursor: pointer; color: black; width: 100%;"><br>
                         </form>
                         <br>
-                        <a href="/employee/remove/${pendingReview._id}"><button>REMOVE EMPLOYEE</button></a><br><br>
-                        <a href="/employee/setAdmin/${pendingReview._id}"><button>MAKE ADMIN</button></a>
-                `;
-
+                        <a href="/review/delete/${pendingReview._id}/${pendingReview.reviewer._id}"><button>DELETE PENDING REVIEW</button></a><br><br>
+                    `;
+                    
                 var mongooseDate = new Date(pendingReview.endDate);
 
                 // Format the date as YYYY-MM-DD
                 var formattedDate = mongooseDate.toISOString().split('T')[0];
 
                 // Set the value of the date input field
-                document.getElementById('endDateReview').value = formattedDate;
+                document.getElementById('content').appendChild(reviewEdit);
+                                document.getElementById('endDateReview').value = formattedDate;
+
+               
+              
+                updateSelection();
             }
+
+
+            function openReviewForm() {
+                var mongooseDate = new Date();
+                var formattedDate = mongooseDate.toISOString().split('T')[0];
+                document.getElementById("pending-date").value = formattedDate;
+                document.getElementById("pending-date").min = formattedDate;
+                document.getElementById("overlay").style.display = "block";  
+               
+                updateSelect2();    
+            }
+
+            function closeReviewForm() {
+                document.getElementById("overlay").style.display = "none";
+            }
+
+            function submitReviewForm() {
+                console.log(idd);
+                document.getElementById(idd).remove()
+            }
+            function updateSelect2() {
+                    var select1 = document.getElementById('select1');
+                    var select2 = document.getElementById('select2');
+                    var selectedOption = select1.options[select1.selectedIndex].value;
+                    select2.innerHTML = "";
+                    for (var i = 0; i < select1.options.length; i++) {
+                        var option = select1.options[i];
+                        if (option.value !== selectedOption) {
+                            var newOption = document.createElement('option');
+                            newOption.value = option.value;
+                            newOption.text = option.text;
+                            select2.add(newOption);
+                        }
+                    }
+                }
+            function updateSelection() {
+                 console.log('Update Select');
+                var sele = document.getElementById('reviewer-list');
+                sele.addEventListener('change', function(){
+                    var select11 = document.getElementById('reviewer-list');
+                    var select22 = document.getElementById('reviewe-list');
+                    var selectedOption = select11.options[select11.selectedIndex].value;
+                    select22.innerHTML = "";
+                    for (var i = 0; i < select11.options.length; i++) {
+                        var option = select11.options[i];
+                        if (option.value !== selectedOption) {
+                            var newOption = document.createElement('option');
+                            newOption.value = option.value;
+                            newOption.text = option.text;
+                            select22.add(newOption);
+                        }
+                    }
+                })
+            }
+
+           function updateSelect() {
+               
+                
+            }
+        
 
                 
     </script>

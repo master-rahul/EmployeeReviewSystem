@@ -21,7 +21,7 @@ module.exports.add = async function (request, response) {
         }
     } catch (error) {
         request.flash('error', 'User not Added');
-        return response.staus('500').send();
+        return response.status('500').send();
     }   
 }
 
@@ -30,7 +30,7 @@ module.exports.createSession = async function (request, response) {
     console.log('Session Created');
     if(employee.admin){
         request.flash('success', 'Logged In Successfully');
-        return response.redirect('/admin/home');
+        return response.redirect('/employee/admin');
     }else{
         request.flash('success', 'Logged In Successfully');
         return response.redirect('/employee/home');
@@ -53,9 +53,10 @@ module.exports.home = async function(request, response){
     return response.render('employeeHome', {pendingReviewList : pendingReview, completedReviewList : completedReview});
 }
 module.exports.admin = async function (request, response) {
+    const employee = await Employee.find().select('-password');
     const pendingReview = await PendingReview.find().populate({path : 'reviewer reviewe', select : 'name'});
     const completedReview = await CompletedReview.find().populate({ path: 'reviewer reviewe', select: 'name' });
-    return response.render('admin', {pendingReviewList : pendingReview, completedReviewList : completedReview});
+    return response.render('admin', {pendingReviewList : pendingReview, completedReviewList : completedReview, employeeList : employee});
 }
 module.exports.employeeView = async function (request, response) {
     const employee = await Employee.find().select('-password');
@@ -93,19 +94,80 @@ module.exports.addReview = async function (request, response) {
 }
 
 module.exports.employeeReview = async function (request, response) {
-    try {
-        const newPendingReview = new PendingReview({
-            instruction: "Review the report",
-            reviewe: "6449316d40c6c069a8ea4752", // Replace with an actual employee ID
-            reviewer: "6449316d40c6c069a8ea4752", // Replace with an actual employee ID
-            endDate: new Date()
-        });
-        const savedPendingReview = await newPendingReview.save();
-        console.log('New pendingReview created:', savedPendingReview);
-    } catch (error) {
-        console.error('Error creating pendingReview:', error);
-    }
+    // try {
+    //     const newPendingReview = new PendingReview({
+    //         instruction: "Review the report",
+    //         reviewe: "6448800f1684ba7922c3a817", // Replace with an actual employee ID
+    //         reviewer: "64489a624d4a7c8e05c0ef6b", // Replace with an actual employee ID
+    //         endDate: new Date()
+    //     });
+    //     const savedPendingReview = await newPendingReview.save();
+    //     const emp = await Employee.findByIdAndUpdate('64489a624d4a7c8e05c0ef6b',{$push : {pendingReviews : savedPendingReview.id}})
+    //     console.log('New pendingReview created:', savedPendingReview);
+    // } catch (error) {
+    //     console.error('Error creating pendingReview:', error);
+    // }
     const pendingReview = await PendingReview.find().populate({path : 'reviewer reviewe' , select :'name'});
     const employee = await Employee.find().select('-password');
     return response.render('employeeReview', {pendingReviewList : pendingReview, employeeList : employee});
+}
+
+module.exports.reviewEdit = async function (request, response) {
+    try {
+        const employee = await Employee.findByIdAndUpdate(
+            request.body.reviewerId,
+            { $pull: { pendingReviews: request.body.pendingReviewId } }
+        );
+        // Handle success if necessary
+    } catch (error) {
+        // Handle error
+        console.error(error);
+    }
+    await PendingReview.findByIdAndDelete(request.body.pendingReviewId);
+    const pendingReview = await PendingReview.create({
+        reviewe : request.body.reviewe,
+        reviewer : request.body.reviewer,
+        instruction : request.body.message,
+        endDate : request.body.endDate
+    });
+    await Employee.findByIdAndUpdate(
+        request.body.reviewer,
+        { $push: { pendingReviews: pendingReview.id } }
+    );
+    console.log("Review Edit::", request.body);
+    return response.redirect('back');
+}
+
+module.exports.reviewDelete = async function (request, response) {
+    try {
+        const employee = await Employee.findByIdAndUpdate(
+            request.params.idd,
+            { $pull: { pendingReviews: request.params.id } }
+        );
+        await PendingReview.findByIdAndDelete(request.params.id);
+        // Handle success if necessary
+    } catch (error) {
+        // Handle error
+        console.error(error);
+    }
+    console.log("Review Edit::", request.body);
+    return response.redirect('back');
+}
+
+module.exports.reviewAdd = async function(request, response){
+    console.log("Review ADD", request.body);
+    try {
+        const pendingReview = await PendingReview.create({
+            reviewe: request.body.reviewe,
+            reviewer: request.body.reviewer,
+            endDate: request.body.reviewDate,
+            instruction: request.body.instruction
+        });
+        await Employee.findByIdAndUpdate(request.body.reviewer, { $push: { pendingReviews: pendingReview } });
+        // Handle success if necessary
+    } catch (error) {
+        // Handle error
+        console.error(error);
+    }
+    return response.redirect('back');
 }
