@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Employee</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/employeeReview.css">
+
+</head>
+
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <div class="background1">
+        <div class="shape1"></div>
+        <div class="shape1"></div>
+    </div>
+
+    <div id="main">
+        <div id="heading">
+            <div id="hh">
+                <h2>ADMIN PORTAL</h2>
+            </div>
+            <div id="options">
+                <div id="performance" class="options-button">
+                    <a href="/employee/admin" style="text-decoration: none;"><button>Performance</button></a>
+                </div>
+                <div id="employee" class="options-button">
+                    <a href="/employee/employeeView" style="text-decoration: none;"><button>Employee</button></a>
+                </div>
+                <div id="reviews" class="options-button">
+                    <a href="/employee/employeeReview" style="text-decoration: none;"><button>Reviews</button></a>
+                </div>
+                <div id="assign" class="options-button">
+                    <a href="/employee/assign" style="text-decoration: none;"><button>Assign Employee</button></a>
+                </div>
+            </div>
+            <div id="logout">
+                <div id="name">
+                    &nbsp;&nbsp;<%=locals.name%>
+
+                </div>
+
+                <div id="button">
+                    <a style="text-decoration: none;" href="/employee/destroySession"><button>Log Out</button></a>
+                </div>
+            </div>
+        </div>
+
+        <div id="content">
+
+            <div id="review-list">
+                <div style="display: flex;">
+                    <div id="review-add">
+                        <div>
+                            <h2> Review List : </h2>
+                        </div>
+                        <div style="margin-top: 0px;">
+                            Employee : <select
+                                style="color: black;margin-top: 10px; width: 130px; overflow-x: scroll; white-space: nowrap; height: 30px;"
+                                id="employeeSelected">
+                                <option value="all">All</option>
+                                <%for(employee of employeeList){%>
+                                    <option value="<%=employee.id%>">
+                                        <%=employee.name%>
+                                    </option>
+                                    <%}%>
+                            </select>
+                            &nbsp;End Date : <input value="2024-12-12" type="date" id="dateInput" name="dateInput"
+                                style="color: black;margin-top: 10px; width: 130px; overflow-x: scroll; white-space: nowrap; height: 25px;">
+                        </div>
+                        
+                    
+                    </div>
+                    <div style="display:inline;margin-top: 10px; width: 70px; height: 30px; margin-left: 10px; "> <button style="color : black; font-family: monospace; width: 100%; height: 100%;"onclick="filterReviews('<%=JSON.stringify(pendingReviewList)%>','<%=JSON.stringify(employeeList)%>')">Search</button></div>
+                </div>
+                <div id="reviewsList">
+                    <%for(pendingReview of pendingReviewList){%>
+                        <div id="review-list-item" class="review-list-item-<%=pendingReview.id%>">
+                            <div id="review-list-item-content">
+                                Reviewer : <%=pendingReview.reviewer.name%><br>
+                                Reviewe : <%=pendingReview.reviewe.name%>
+                            </div>
+                            <div id="dates">
+                                <div id="start-date">
+                                    Start : <%=pendingReview.createdAt.toLocaleDateString('en-us', {year: 'numeric', month: 'short', day: 'numeric' })%>
+                                </div>
+                                <div id="end-date">
+                                    End : <%=pendingReview.endDate.toLocaleDateString('en-us', {year: 'numeric', month: 'short', day: 'numeric' })%>
+                                </div>
+                            </div>
+                            <div id="review-list-item-edit">
+
+                                <a style="text-decoration: none;"><button onclick="assign('<%=JSON.stringify(pendingReview)%>', '<%=JSON.stringify(employeeList)%>')">Edit</button></a>
+                                    <a href='/review/delete/<%=pendingReview.id%>'style="text-decoration: none;"><button>Delete</button></a>
+                            </div>
+                        </div>
+                    <%}%>
+                </div>
+            </div>
+            <div id="review-edit">
+
+            </div>
+        </div>
+
+
+
+        
+        
+       
+
+
+    </div>
+
+
+    <script id="flash-message">
+        <%if (flash.success && flash.success.length > 0) {%>
+            new Noty({
+                theme: 'relax',
+                type: 'success',
+                text: "<%=flash.success%>",
+                layout: 'topRight',
+                timeout: 500
+            }).show();
+                    <%}%>
+                     <%if (flash.error && flash.error.length > 0) {%>
+            new Noty({
+                theme: 'relax',
+                type: 'error',
+                text: "<%=flash.error%>",
+                layout: 'topRight',
+                timeout: 500
+            }).show();
+        <%}%>
+    </script>
+    <script>
+
+            function filterReviews(pendingReview, employee) {
+                var pendingReviewList = JSON.parse(pendingReview);
+                var employeeList = JSON.parse(employee);
+                //var pendingReviewList = pendingReview;
+                var employeeSelect = document.getElementById("employeeSelected");
+                 var dateInput = new Date(document.getElementById("dateInput").value);
+                dateInput.setDate(dateInput.getDate() + 1);
+                console.log(dateInput);
+                var selectedEmployeeId = employeeSelect.value;
+                console.log(selectedEmployeeId);
+                var reviewList = document.getElementById('reviewsList');
+                reviewList.innerHTML ="";
+                for(pendingReview of pendingReviewList){
+                    if((pendingReview.reviewer._id == selectedEmployeeId || selectedEmployeeId == 'all') && dateInput >= new Date(pendingReview.endDate)){
+                        console.log('True');
+                        var reviewListItem = document.createElement('div');
+                        reviewListItem.id = "review-list-item";
+                        reviewListItem.class = `review-list-item-${pendingReview.id}`
+                        var reviewListItemContent = document.createElement('div');
+                        reviewListItemContent.id = "review-list-item-content";
+                        var dates = document.createElement('div');
+                        dates.id = "dates";
+                        var startDate = document.createElement('div');
+                        startDate.id = "start-date";
+                        var endDate = document.createElement('div');
+                        endDate.id = "end-date";
+                        var reviewListItemEdit = document.createElement('div');
+                        reviewListItemEdit.id = "review-list-item-edit";
+                        reviewListItemContent.innerHTML = ` Reviewer : ${pendingReview.reviewer.name}<br>Reviewe : ${pendingReview.reviewe.name}`
+                        var dt = pendingReview.createdAt;
+                        startDate.innerHTML = `Start : ${dt.substring(0,10)}`;
+                        dt = pendingReview.endDate;
+                        endDate.innerHTML = `End : ${dt.substring(0, 10) }`;
+                        reviewListItemEdit.innerHTML =  `<a style="text - decoration: none; "><button onclick = "assign(${pendingReview}, ${employeeList})" > Edit</button ></a> <a href="/review/delete/${pendingReview.id}" style="text-decoration: none;"><button>Delete</button ></a>`;
+                        dates.appendChild(startDate);
+                        dates.appendChild(endDate);
+                        reviewListItem.appendChild(reviewListItemContent);
+                        reviewListItem.appendChild(dates);
+                        reviewListItem.appendChild(reviewListItemEdit);
+                        reviewList.append(reviewListItem);
+                    }
+                }
+            }
+
+           function assign(review, employee) {
+                var pendingReview = JSON.parse(review);
+                var employeeList = JSON.parse(employee);
+                //document.findElementsByClassName(`review-list-item-${pendingReview.id}`);
+                console.log(employeeList);
+                var reviewEdit = document.getElementById('review-edit');
+                var reviewerSelect = document.createElement('select');
+                reviewerSelect.id = "reviewer-list";
+                var optionElement = document.createElement('option');
+                optionElement.value = pendingReview.reviewer._id;
+                optionElement.textContent = pendingReview.reviewer.name;
+                reviewerSelect.appendChild(optionElement);
+                for (emp of employeeList) {
+                    if (emp._id != pendingReview.reviewer._id) {
+                        var optionE = document.createElement('option');
+                        optionE.value = emp._id;
+                        optionE.textContent = emp.name;
+                        reviewerSelect.appendChild(optionE);
+                    }
+                }
+                var revieweSelect = document.createElement('select');
+                revieweSelect.id = "reviewe-list";
+                optionElement = document.createElement('option');
+                optionElement.value = pendingReview.reviewe._id;
+                optionElement.textContent = pendingReview.reviewe.name;
+                revieweSelect.appendChild(optionElement);
+                for (emp of employeeList) {
+                    if (emp._id != pendingReview.reviewe._id) {
+                        var optionEe = document.createElement('option');
+                        optionEe.value = emp._id;
+                        optionEe.textContent = emp.name;
+                        revieweSelect.appendChild(optionEe);
+                    }
+                }
+
+                reviewEdit.innerHTML = `
+                        <form action="/employee/edit" method="POST">
+                        <h3>Edit Review:</h3><br>
+                        <label>Reviewer Name</label> <br>
+                        ${reviewerSelect.outerHTML}<br>
+                        <label>Reviewe Name</label><br>
+                        ${revieweSelect.outerHTML}<br>
+                        <label>Instruction</label><br>
+                        <textarea id="message" name="message" rows="4" cols="50">${pendingReview.instruction}</textarea><br>
+                        <label>Pending Date</label><br>
+                        <input value="2024-12-12" type="date" style="color : white;" id="endDateReview" style="color: black;margin-top: 10px; width: 130px; overflow-x: scroll; white-space: nowrap; height: 25px;"><br>
+                        <input type="submit" style="background-color: white; cursor: pointer; color: black; width: 100%;"><br>
+                        </form>
+                        <br>
+                        <a href="/employee/remove/${pendingReview._id}"><button>REMOVE EMPLOYEE</button></a><br><br>
+                        <a href="/employee/setAdmin/${pendingReview._id}"><button>MAKE ADMIN</button></a>
+                `;
+
+                var mongooseDate = new Date(pendingReview.endDate);
+
+                // Format the date as YYYY-MM-DD
+                var formattedDate = mongooseDate.toISOString().split('T')[0];
+
+                // Set the value of the date input field
+                document.getElementById('endDateReview').value = formattedDate;
+            }
+
+                
+    </script>
+   
+</body>
+
+</html>

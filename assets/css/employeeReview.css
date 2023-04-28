@@ -75,14 +75,14 @@ body {
     height: 90vh;
     width: 90vw;
     min-height: 860px;
-    min-width: 1050px;
+    min-width: 1200px;
     position: absolute;
     margin-left: 5vw;
     background-color: rgba(255, 255, 255, 0.13);
     position: absolute;
     border-radius: 10px;
     backdrop-filter: blur(10px);
-    border: 2px solid white;
+    border: 0.5px solid white;
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
 
 }
@@ -91,7 +91,7 @@ body {
     display: flex;
     height: 50px;
     width: 100%;
-    border-bottom: 1px solid white;
+    border-bottom: 0.5px solid white;
 }
 
 #hh {
@@ -116,7 +116,7 @@ body {
     height: 50px;
     width: 25%;
     justify-content: space-between;
-    
+
 }
 
 #name {
@@ -125,9 +125,9 @@ body {
     height: 45px;
     overflow: scroll;
     background-color: rgba(255, 255, 255, 0.13);
-     
-       
-     
+
+
+
     font-size: 25px;
     padding-top: 5px;
 }
@@ -136,7 +136,7 @@ body {
     display: inline;
     width: 40%;
     height: 50px;
-   
+
 }
 
 #button a button {
@@ -157,9 +157,8 @@ body {
     margin-top: 30px;
     height: 92%;
     width: 100%;
-    margin-left: 20px;
-    margin-right: 20px;
     justify-content: space-around;
+    margin-left: 10px;
 }
 
 
@@ -179,11 +178,11 @@ body {
     cursor: pointer;
 }
 
-#employee-list {
-    width: 50%;
+#review-list {
+    width: 55%;
     height: 90%;
     border: 1px solid white;
-    padding: 10px 30px;
+    padding: 10px 20px;
     margin-top: 10px;
     background-color: rgba(255, 255, 255, 0.13);
     border-radius: 10px;
@@ -191,10 +190,11 @@ body {
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     overflow: scroll;
-   
+    margin-left: 5px;
+    border: 0.5px solid white;
 }
 
-#employee-list-item {
+#review-list-item {
     width: 100%;
     height: 60px;
     margin-bottom: 10px;
@@ -207,43 +207,52 @@ body {
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
 }
 
-#employee-list-item-content {
-    width: 70%;
+#review-list-item-content {
+    width: 60%;
     height: 80%;
-
-    padding: 5px 35px;
+    display: inline;
+    padding: 10px 10px;
     overflow: scroll;
     font-family: monospace;
-    font-size: 20px;
+    font-size: 18px;
+    overflow-x: scroll;
+    white-space: nowrap;
+    margin-right: 10px;
 }
 
-#employee-list-item-edit {
+#review-list-item-edit {
     width: 20%;
     height: 100%;
 
 }
 
-#employee-edit {
+#review-edit {
     width: 40%;
     height: 90%;
-
-    padding: 10px 30px;
+    border: 1px solid white;
+    padding: 10px 20px;
     margin-top: 10px;
+    width: 33%;
+    margin-right: 5px;
+    border-radius: 10px;
+        backdrop-filter: blur(10px);
+        border: 0.5px solid white;
+        box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
 }
 
-#employee-list-item-edit a button {
+#review-list-item-edit a button {
     cursor: pointer;
     width: 100%;
-    height: 100%;
+    height: 50%;
     color: black;
     font-family: monospace;
-    font-size: 16px;
+    font-size: 15px;
 
 
 }
 
 /* EDIT FORM*/
-#employee-edit form {
+#review-edit form {
     background-color: rgba(255, 255, 255, 0.13);
     border-radius: 10px;
     backdrop-filter: blur(10px);
@@ -252,7 +261,7 @@ body {
     padding: 20px 35px;
 }
 
-#employee-edit form input {
+#review-edit form input {
     display: block;
     height: 40px;
     width: 95%;
@@ -265,7 +274,7 @@ body {
     border: 1px solid white;
 }
 
-#employee-edit form * {
+#review-edit form * {
     font-family: 'Poppins', sans-serif;
     color: #ffffff;
     letter-spacing: 0.5px;
@@ -273,11 +282,11 @@ body {
     border: none;
 }
 
-#employee-edit form input::placeholder {
+#review-edit form input::placeholder {
     color: #e5e5e5;
 }
 
-#employee-edit button {
+#review-edit button {
     color: black;
     background-color: white;
     cursor: pointer;
@@ -289,25 +298,139 @@ body {
     border: none;
 }
 
-#employee-edit form button:hover {
+#review-edit form button:hover {
     background-color: grey;
 }
-#emp-add{
+
+#review-add {
     display: flex;
     justify-content: space-between;
     height: 60px;
+    width: 93%;
 }
-#emp-add div{
+
+#review-add div {
     display: inline;
     height: 100%;
+    margin-top: -10px;
 }
-#emp-add div a button{
+
+#review-add div a button {
     height: 80%;
     width: 100%;
-    color : black;
+    color: black;
     font-family: monospace;
     font-size: 15px;
     border-radius: 5px;
-    border : none;
+    border: none;
     padding: 0px 22px;
 }
+#dates{
+    display: inline;
+    width: 30%;
+    border-left: 0.5px solid white;
+    margin-left: 10px;
+    
+}
+#start-date{
+    width: 100%;
+    border-bottom : 0.5px solid white;
+    height: 50%;
+    padding-left: 10px;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+#end-date{
+    width: 100%;
+    height: 50%;
+    padding-left: 10px;
+    margin-top: 7px;
+    overflow-x: scroll;
+        white-space: nowrap;
+}
+
+
+
+/* EDIT FORM*/
+#review-edit form {
+    background-color: rgba(255, 255, 255, 0.13);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    padding: 20px 35px;
+}
+
+#review-edit form input {
+    display: block;
+    height: 40px;
+    width: 95%;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 18px;
+    font-weight: 300;
+    border: 1px solid white;
+}
+#review-edit form textarea {
+    display: block;
+    width: 95%;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 18px;
+    font-weight: 300;
+    border: 1px solid white;
+}
+#review-edit form textarea::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    /* Invert the color of the icon */
+}
+
+#review-edit form textarea::-webkit-datetime-edit-fields-wrapper {
+    color: white;
+    /* Change the color of the input text */
+}
+#review-edit form select {
+    display: block;
+    height: 40px;
+    width: 95%;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 18px;
+    font-weight: 300;
+    border: 1px solid white;
+}
+
+#review-edit form * {
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+
+#review-edit form input::placeholder {
+    color: #e5e5e5;
+}
+
+#review-edit button {
+    color: black;
+    background-color: white;
+    cursor: pointer;
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.5px;
+    border: none;
+}
+
+#review-edit form button:hover {
+    background-color: grey;
+}
+
