@@ -48,7 +48,6 @@ passport.checkAuthentication = function (request, response, next) {
 }
 
 passport.setAuthenticated = function (request, response, next) {
-    console.log("Req", request.user);
     if (request.isAuthenticated()) {
         response.locals.name = request.user.name;
         response.locals.userId = request.user.id;
@@ -56,6 +55,22 @@ passport.setAuthenticated = function (request, response, next) {
         response.locals.admin = request.user.admin;
     }
     return next();
+}
+passport.checkAdmin = async function (request, response, next) {
+    if (request.isAuthenticated()) {
+       const emp = await Employee.findById(request.user.id);
+        if (emp.admin) return next();
+        else return response.redirect('/employee/home');
+    }
+    return  response.redirect('/');
+}
+passport.checkEmployee = async function (request, response, next) {
+    if (request.isAuthenticated()) {
+        const emp = await Employee.findById(request.user.id);
+        if (!emp.admin) return next();
+        else return response.redirect('/employee/home');
+    }
+    return response.redirect('/');
 }
 
 

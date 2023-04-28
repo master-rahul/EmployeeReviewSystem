@@ -295,3 +295,107 @@ cursor: pointer;
     padding: 0px 40px;
     cursor: pointer;
 }
+
+#overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+#review-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 450px;
+    color: black;
+}
+
+#review-form h2 {
+    margin-top: 0;
+}
+
+#review-form label {
+    display: inline-block;
+    width: 30%;
+    margin-bottom: 10px;
+    color: black;
+}
+
+#review-form input[type="text"],
+#review-form input[type="date"],
+#review-form textarea {
+    width: 60%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+    color: black;
+}
+
+#review-form input[type="submit"],
+#review-form button {
+    display: block;
+    margin-top: 20px;
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 60%;
+}
+
+#review-form input[type="submit"] {
+    width: 440px;
+}
+
+#review-form input[type="submit"]:hover,
+#review-form button:hover {
+    background-color: #3e8e41;
+}
+
+.conent-pending-item {
+    margin-bottom: 0;
+}
+
+#review-form input[type="submit"] {
+    display: block;
+    margin: 0 auto;
+}
+
+input[type="range"] {
+    --webkit-appearance: none;
+    width: 60%;
+    height: 15px;
+    background-color: #ddd;
+    border-radius: 5px;
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: #00bcd4;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    background-color: #008ba3;
+}
