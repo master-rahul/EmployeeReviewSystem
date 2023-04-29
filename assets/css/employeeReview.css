@@ -507,7 +507,9 @@ body {
 #review-form button:hover {
     background-color: #3e8e41;
 }
-
+#review-form input{
+    height: 40px;
+}
 .conent-pending-item {
     margin-bottom: 0;
 }
@@ -550,4 +552,5 @@ input[type="range"]::-webkit-slider-thumb:hover {
 #review-edit form select:focus {
     background-color: white;
     color: black;
+    
 }

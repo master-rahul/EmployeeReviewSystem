@@ -187,7 +187,7 @@ body {
     margin-top: 10px;
     background-color: rgba(255, 255, 255, 0.13);
     border-radius: 10px;
-    backdrop-filter: blur(10px);
+    /* backdrop-filter: blur(10px); */
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     overflow: scroll;
@@ -202,9 +202,9 @@ body {
     background-color: grey;
     background-color: rgba(255, 255, 255, 0.13);
     border-radius: 10px;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    /* backdrop-filter: blur(10px); */
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+        border: 0.5px solid white;
 }
 
 #employee-list-item-content {
@@ -244,12 +244,13 @@ body {
 
 /* EDIT FORM*/
 #employee-edit form {
-    background-color: rgba(255, 255, 255, 0.13);
+    /* background-color: rgba(255, 255, 255, 0.13); */
     border-radius: 10px;
-    backdrop-filter: blur(10px);
+    /* backdrop-filter: blur(10px); */
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     padding: 20px 35px;
+    border: 0.5px solid white;
 }
 
 #employee-edit form input {
@@ -322,7 +323,7 @@ body {
     height: 100%;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    /* background-color: rgba(0, 0, 0, 0.5); */
     z-index: 1;
 }
 
@@ -334,7 +335,7 @@ body {
     background-color: white;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+     /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
     width: 450px;
     color: black;
 }

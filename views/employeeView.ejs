@@ -147,7 +147,7 @@
             if(employeeString == null){
                 var employeeEdit = document.getElementById('employee-edit');
                 employeeEdit.innerHTML = `
-                <form action="/employee/add" method="POST">
+                <form action="/employee/addEmployee" method="POST">
                     
                     <h3>Employee Details</h3>
                     <label for="name">Name</label>
@@ -173,10 +173,10 @@
                 var employee = JSON.parse(employeeString);
                 var employeeEdit = document.getElementById('employee-edit');
                 employeeEdit.innerHTML = `
-                <form action="/employee/edit" method="POST">
+                <form action="/employee/editEmployee" method="POST">
                     <h3>Edit Employee :</h3>
                     
-                    <input type="hidden" value="${employee._id}" id="id" name="id" disabled>
+                    <input type="hidden" value="${employee._id}" id="${employee._id}" name="id">
 
                     <label for="name">Name</label>
                     <input type="text" value="${employee.name}" id="name" name="name" disabled>
@@ -185,7 +185,7 @@
                     <input type="email" value="${employee.email}" id="email" name="email" disabled>
                 
                     <label for="department">Department</label>
-                    <input type="text" value="${employee.department}" id="department" name="department" required>  
+                    <input type="text" value="${employee.deparment}" id="department" name="department" required>  
                     <br>
                     <input type="submit" style="background-color: white; cursor : pointer; color: black; width: 100%;"><br>
                     </form>

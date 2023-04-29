@@ -63,8 +63,16 @@
                     
                         <div class="pending-list-item" id="pending-item-1">
                             <div id="pending-item-content">
-                                Reviewe &nbsp;: <%=pendingReview.reviewe.name%> <br>
-                                    Reviewer : <%=pendingReview.reviewer.name%>
+                                <%if(pendingReview.reviewe==null){%>
+                                        Reviewe: Employee Removed
+                                <%}else{%>
+                                        Reviewe: <%=pendingReview.reviewe.name%>
+                                <%}%><br>
+                                <%if(pendingReview.reviewer==null){%>
+                                    Reviewer: Employee Removed
+                                <%}else{%>
+                                        Reviewer: <%=pendingReview.reviewer.name%>
+                                <%}%>
                             </div>
                             <div id="item-dates">
                                 <div id="start-date">
@@ -126,14 +134,14 @@
                             <div id="employee-details">
                                 <div class="emp1">
                                     <%if(completedReview.reviewe ==null){%>
-                                        Reviewe: Employee Deleted
+                                        Reviewe: Employee Removed
                                     <%}else{%>
                                         Reviewe: <%=completedReview.reviewe.name%>
                                     <%}%>
                                 </div>
                                 <div class="emp2">
                                     <%if(completedReview.reviewer==null){%>
-                                        Reviewer: Employee Deleted
+                                        Reviewer: Employee Removed
                                     <%}else{%>
                                         Reviewer: <%=completedReview.reviewer.name%>
                                     <%}%>

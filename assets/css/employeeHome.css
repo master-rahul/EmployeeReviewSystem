@@ -131,6 +131,7 @@ button{
     border: 1px solid white;
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     border: 0.5px solid black;
+            border: 0.5px solid white;
     
 }
 #item-content{
@@ -376,6 +377,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     border: 0.5px solid black;
+            border: 0.5px solid white;
 }
 
 #completed-item-content {
