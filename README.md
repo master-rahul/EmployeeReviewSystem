@@ -1,7 +1,9 @@
 # EmployeeReviewSystem
+#ADMIN CREDENTIALS : email : admin@theonelogic.in, password : administrator
 This application has following features 
 1. ADMIN VIEW
 ```sh
+
 ADD EMPLOYEE :
 REMOVE EMPLOYEE  :
 EDIT EMPLOYEE   :
