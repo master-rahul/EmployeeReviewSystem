@@ -1,8 +1,8 @@
-const cookieParser = require('cookie-parser')       // Fetch cookie-parser modules  .
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const Employee = require('../models/employee');
-const MongoStore = require('connect-mongo');        // Fetch connect-mongo modules.
+const cookieParser = require('cookie-parser')                                   // Fetch cookie-parser modules  .
+const passport = require('passport');                                           // Fetching passport module
+const LocalStrategy = require('passport-local').Strategy;                       // Fetching passport local strategy
+const Employee = require('../models/employee');                                 // Fetching employee model
+const MongoStore = require('connect-mongo');                                    // Fetch connect-mongo modules.
 const cookie = require('cookie');
 
 passport.use(new LocalStrategy({
@@ -22,7 +22,7 @@ passport.use(new LocalStrategy({
     }
 ));
 
-passport.serializeUser(function (employee, done) {
+passport.serializeUser(function (employee, done) {                                          // serilazies using the employee id
     console.log('serialize');
     done(null, employee._id);
 });
@@ -42,13 +42,13 @@ passport.deserializeUser(async function (id, done) {
     }
 });
 
-passport.checkAuthentication = function (request, response, next) {
-    if (request.isAuthenticated()) return next();
+passport.checkAuthentication = function (request, response, next) {                             //Verfies authenticeation
+    if (request.isAuthenticated()) return next();   
     return response.redirect('/');
 }
 
-passport.setAuthenticated = function (request, response, next) {
-    if (request.isAuthenticated()) {
+passport.setAuthenticated = function (request, response, next) {                                // Sets the user information in request.
+    if (request.isAuthenticated()) {    
         response.locals.name = request.user.name;
         response.locals.userId = request.user.id;
         response.locals.email = request.user.email;
@@ -56,7 +56,7 @@ passport.setAuthenticated = function (request, response, next) {
     }
     return next();
 }
-passport.checkAdmin = async function (request, response, next) {
+passport.checkAdmin = async function (request, response, next) {                                //Verfies authentication for admins
     if (request.isAuthenticated()) {
        const emp = await Employee.findById(request.user.id);
         if (emp.admin) return next();
@@ -64,7 +64,7 @@ passport.checkAdmin = async function (request, response, next) {
     }
     return  response.redirect('/');
 }
-passport.checkEmployee = async function (request, response, next) {
+passport.checkEmployee = async function (request, response, next) {                             //Verfies authentication for employee
     if (request.isAuthenticated()) {
         const emp = await Employee.findById(request.user.id);
         if (!emp.admin) return next();
@@ -73,10 +73,5 @@ passport.checkEmployee = async function (request, response, next) {
     return response.redirect('/');
 }
 
-
-passport.redirectAuthenticated = function (request, response, next) {
-    if (request.isAuthenticated()) return response.redirect('/profile');
-    return next();
-}
 
 module.exports = passport;
