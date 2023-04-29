@@ -1,8 +1,8 @@
-const Employee = require('../models/employee');
-const PendingReview = require('../models/pendingReview');
-const CompletedReview = require('../models/completedReview');
+const Employee = require('../models/employee');                                                                             // To fetch employee module
+const PendingReview = require('../models/pendingReview');                                                                   // To fetch pendingReview module
+const CompletedReview = require('../models/completedReview');                                                               // To fetch completedReview module
 
-module.exports.add = async function (request, response) {
+module.exports.add = async function (request, response) {                                                                   // ADDS AN EMPLOYEE VIA REGISTER OR GOOGLE LOGIN
     if (request.body.password != request.body.confirm_password){
         request.flash('error', 'Password does not match');
         return response.redirect('back');
@@ -25,7 +25,7 @@ module.exports.add = async function (request, response) {
     }   
 }
 
-module.exports.addEmployee = async function (request, response) {
+module.exports.addEmployee = async function (request, response) {                                                               // ADDS EMPLOYEE FROM ADMIN PORTAL
     if (request.body.password != request.body.confirm_password) {
         request.flash('error', 'Password does not match');
         return response.redirect('back');
@@ -48,7 +48,7 @@ module.exports.addEmployee = async function (request, response) {
     }
 }
 
-module.exports.createSession = async function (request, response) {
+module.exports.createSession = async function (request, response) {                                                                     // CREATES SESSION FOR EMPLOYEES
     const employee = await Employee.findOne({email : request.body.email});
     console.log('Session Created');
     if(employee.admin){
@@ -59,7 +59,7 @@ module.exports.createSession = async function (request, response) {
         return response.redirect('/employee/home');
     }
 }
-module.exports.createSession1 = async function (request, response) {
+module.exports.createSession1 = async function (request, response) {                                                                    // CREATES SESSION FOR ADMINS
     const employee = await Employee.findOne({ email: request.user.email });
     console.log('Session Created');
     if (employee.admin) {
@@ -71,7 +71,7 @@ module.exports.createSession1 = async function (request, response) {
     }
 }
 
-module.exports.destroySession = async function(request, response){
+module.exports.destroySession = async function(request, response){                                                                      // DESTROYS SESSION FOR EMPLOYEE AND ADMINS
     request.logout(function (error) {
         if (error) { return response.status('500').send(); }
         else {
@@ -81,34 +81,34 @@ module.exports.destroySession = async function(request, response){
     });
 }
 
-module.exports.home = async function(request, response){
+module.exports.home = async function(request, response){                                                                                // LOADS HOMEPAGE FOR EMPLOYEE
     const pendingReview = await PendingReview.find({ 'reviewer': request.user.id}).populate({path : 'reviewer reviewe', select : '-password'});
     const completedReview = await CompletedReview.find({'reviewer' : request.user.id}).populate({path : 'reviewer reviewe', select : 'name'});
     return response.render('employeeHome', {pendingReviewList : pendingReview, completedReviewList : completedReview});
 }
-module.exports.admin = async function (request, response) {
+module.exports.admin = async function (request, response) {                                                                             // LOADS HOMEPAGE FOR ADMIN
     const employee = await Employee.find({admin:false}).select('-password');
     const pendingReview = await PendingReview.find().populate({path : 'reviewer reviewe', select : 'name'});
     const completedReview = await CompletedReview.find().populate({ path: 'reviewer reviewe', select: 'name' });
     return response.render('admin', {pendingReviewList : pendingReview, completedReviewList : completedReview, employeeList : employee});
 }
-module.exports.employeeView = async function (request, response) {
+module.exports.employeeView = async function (request, response) {                                                                      // SHOWS EMPLOYEE LIST IN ADMIN PORTAL
     const employee = await Employee.find({admin : false}).select('-password');
     console.log(employee);
     return response.render('employeeView', { employeeList: employee });
 }
 
-module.exports.remove = async function (request, response) {
+module.exports.remove = async function (request, response) {                                                                            // REMOVES EMPLOYEE LIST FROM ADMIN PORTAL
     const employee = await Employee.findByIdAndDelete(request.params.id);
     return response.redirect('back');
 }
-module.exports.setAdmin = async function (request, response) {
+module.exports.setAdmin = async function (request, response) {                                                                          // SETS AN EMPLOYEE AS ADMIN FROM ADMIN PORTAL
     const employee = await Employee.findById(request.params.id);
     employee.admin = true;
     employee.save();
     return response.redirect('back');
 }
-module.exports.addReview = async function (request, response) {
+module.exports.addReview = async function (request, response) {                                                                         // ALLOWS EMPLOYEE TO COMPLETE THE REVIEW
     console.log("Review Add",request.body);
     const pendingReview = await PendingReview.findById(request.body.pendingId);
     if (pendingReview) {
@@ -127,7 +127,7 @@ module.exports.addReview = async function (request, response) {
     return response.redirect('back');
 }
 
-module.exports.employeeReview = async function (request, response) {
+module.exports.employeeReview = async function (request, response) {                                                                            // SHOWS ALL PENDING AND COMPLETED REVIEWS IN ADMIN PORTAL 
     // try {
     //     const newPendingReview = new PendingReview({
     //         instruction: "Review the report",
@@ -146,7 +146,7 @@ module.exports.employeeReview = async function (request, response) {
     return response.render('employeeReview', {pendingReviewList : pendingReview, employeeList : employee});
 }
 
-module.exports.reviewEdit = async function (request, response) {
+module.exports.reviewEdit = async function (request, response) {                                                                            // ALLOWS ADMIN TO EDIT PENDING REVIEWS 
     try {
         const employee = await Employee.findByIdAndUpdate(
             request.body.reviewerId,
@@ -172,7 +172,7 @@ module.exports.reviewEdit = async function (request, response) {
     return response.redirect('back');
 }
 
-module.exports.reviewDelete = async function (request, response) {
+module.exports.reviewDelete = async function (request, response) {                                                                  // ALLOWS ADMIN TO DELETE A PENDING REVIEW
     try {
         const employee = await Employee.findByIdAndUpdate(
             request.params.idd,
@@ -188,8 +188,8 @@ module.exports.reviewDelete = async function (request, response) {
     return response.redirect('back');
 }
 
-module.exports.reviewAdd = async function(request, response){
-    console.log("Review ADD", request.body);
+module.exports.reviewAdd = async function(request, response){                                                               // ALLOWS ADMIN TO ASSIGN REVIEW TO EMPLOYEE
+    console.log("Review ADD", request.body);    
     try {
         const pendingReview = await PendingReview.create({
             reviewe: request.body.reviewe,
@@ -206,7 +206,7 @@ module.exports.reviewAdd = async function(request, response){
     return response.redirect('back');
 }
 
-module.exports.employeeEdit = async function (request, response) {
+module.exports.employeeEdit = async function (request, response) {                                                                  // ALLOWS ADMIN TO EDIT EMPLOYEE INFORMATION FROM ADMIN PORTAL
     await Employee.findByIdAndUpdate(request.body.id,{ deparment : request.body.department});
     return response.redirect('back');
 }
