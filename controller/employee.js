@@ -15,7 +15,7 @@ module.exports.add = async function (request, response) {
         }
         else {
             console.log('User Added Successfully');
-            await Employee.create({ name: request.body.name, email: request.body.email, password: request.body.password, admin : false });
+            await Employee.create({ name: request.body.name, email: request.body.email, password: request.body.password, admin : false, deparment : 'Administration'});
             request.flash('success', 'Used Added Successfuly');
             return response.redirect('/');
         }
@@ -25,6 +25,29 @@ module.exports.add = async function (request, response) {
     }   
 }
 
+module.exports.addEmployee = async function (request, response) {
+    if (request.body.password != request.body.confirm_password) {
+        request.flash('error', 'Password does not match');
+        return response.redirect('back');
+    }
+    try {
+        let employee = await Employee.findOne({ email: request.body.email });
+        if (employee) {
+            request.flash('error', 'User Already Exists');
+            return response.redirect('back');
+        }
+        else {
+            console.log('User Added Successfully');
+            await Employee.create({ name: request.body.name, email: request.body.email, password: request.body.password, admin: false , deparment : request.body.department});
+            request.flash('success', 'Used Added Successfuly');
+            return response.redirect('back');
+        }
+    } catch (error) {
+        request.flash('error', 'User not Added');
+        return response.status('500').send();
+    }
+}
+
 module.exports.createSession = async function (request, response) {
     const employee = await Employee.findOne({email : request.body.email});
     console.log('Session Created');
@@ -32,6 +55,17 @@ module.exports.createSession = async function (request, response) {
         request.flash('success', 'Logged In Successfully');
         return response.redirect('/employee/admin');
     }else{
+        request.flash('success', 'Logged In Successfully');
+        return response.redirect('/employee/home');
+    }
+}
+module.exports.createSession1 = async function (request, response) {
+    const employee = await Employee.findOne({ email: request.user.email });
+    console.log('Session Created');
+    if (employee.admin) {
+        request.flash('success', 'Logged In Successfully');
+        return response.redirect('/employee/admin');
+    } else {
         request.flash('success', 'Logged In Successfully');
         return response.redirect('/employee/home');
     }
@@ -53,13 +87,14 @@ module.exports.home = async function(request, response){
     return response.render('employeeHome', {pendingReviewList : pendingReview, completedReviewList : completedReview});
 }
 module.exports.admin = async function (request, response) {
-    const employee = await Employee.find().select('-password');
+    const employee = await Employee.find({admin:false}).select('-password');
     const pendingReview = await PendingReview.find().populate({path : 'reviewer reviewe', select : 'name'});
     const completedReview = await CompletedReview.find().populate({ path: 'reviewer reviewe', select: 'name' });
     return response.render('admin', {pendingReviewList : pendingReview, completedReviewList : completedReview, employeeList : employee});
 }
 module.exports.employeeView = async function (request, response) {
-    const employee = await Employee.find().select('-password');
+    const employee = await Employee.find({admin : false}).select('-password');
+    console.log(employee);
     return response.render('employeeView', { employeeList: employee });
 }
 
@@ -74,7 +109,7 @@ module.exports.setAdmin = async function (request, response) {
     return response.redirect('back');
 }
 module.exports.addReview = async function (request, response) {
-    console.log(request.body);
+    console.log("Review Add",request.body);
     const pendingReview = await PendingReview.findById(request.body.pendingId);
     if (pendingReview) {
         const completedReview = await CompletedReview.create({
@@ -88,8 +123,7 @@ module.exports.addReview = async function (request, response) {
         const employee = await Employee.findByIdAndUpdate(pendingReview.reviewer, {$push : {completedReviews : completedReview}, $pull : {pendingReviews : pendingReview.id}});
         await PendingReview.findByIdAndDelete(request.body.pendingId);
     }
-   
-    
+
     return response.redirect('back');
 }
 
@@ -108,7 +142,7 @@ module.exports.employeeReview = async function (request, response) {
     //     console.error('Error creating pendingReview:', error);
     // }
     const pendingReview = await PendingReview.find().populate({path : 'reviewer reviewe' , select :'name'});
-    const employee = await Employee.find().select('-password');
+    const employee = await Employee.find({admin: false}).select('-password');
     return response.render('employeeReview', {pendingReviewList : pendingReview, employeeList : employee});
 }
 
@@ -169,5 +203,10 @@ module.exports.reviewAdd = async function(request, response){
         // Handle error
         console.error(error);
     }
+    return response.redirect('back');
+}
+
+module.exports.employeeEdit = async function (request, response) {
+    await Employee.findByIdAndUpdate(request.body.id,{ deparment : request.body.department});
     return response.redirect('back');
 }

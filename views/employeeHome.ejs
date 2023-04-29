@@ -21,7 +21,7 @@
     <div id="main">
        <div id="header">
             <div id="left">
-                &nbsp;EMPLOYEE PORTAL
+                &nbsp;<%=locals.name%>
             </div>
             <div id="right">
                 <a style="text-decoration: none;" href="/employee/destroySession"><button>Log Out</button></a>
@@ -155,7 +155,7 @@
                 <label for="improvementArea">Improvemnet Areas :</label>
                 <input type="text" id="myInput" name="improvementArea" multiple required><br><br>
                 <input type="hidden" id="pendingId" name="pendingId" value=""> 
-                <input type="submit" style="width: 100%; height: 45px;" value="Submit" onclick="submitReviewForm()" style="text-align: center;">
+                <input type="submit" style="width: 100%; height: 45px;" value="Submit" style="text-align: center;">
                 
             </form>
             <button style="width: 100%; height: 45px;" onclick="closeReviewForm()">Close</button>

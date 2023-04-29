@@ -216,6 +216,11 @@
             }
 
            function assign(review, employee) {
+                var element = document.getElementById('review-edit');
+                if (element) {
+                   element.remove();
+               }
+               
                 var pendingReview = JSON.parse(review);
                 var employeeList = JSON.parse(employee);
                 //document.findElementsByClassName(`review-list-item-${pendingReview.id}`);

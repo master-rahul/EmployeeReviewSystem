@@ -1,15 +1,16 @@
 const express = require('express');
 const app = express();
+const passport = require('passport');
+const MongoStore = require('connect-mongo');
 const db = require('./config/mongoose');                                                // To fetch the configuration of mongoose for connecting to MongoDB database.
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');                                                 // To fetch connect-flash module, used for send flash noticication in webpage
 const customMiddleware = require('./config/middleware');                                // To fetch middleware module, used to add certains fields in response 
 const expressSession = require('express-session');
-const MongoStore = require('connect-mongo');
 const noty = require('noty');
 const passportLocal = require('./config/passport_local_strategy');                      // To fetch the configuration of passport-local strategy for creating middlewares for accessing request.
-const passport = require('passport');
 const cookieParser = require('cookie-parser')                                           // To fetch cookie-parser module, used for parsing cookie
+const passportGoogle = require('./config/passport_google_oauth2_strategy');             // To fetch the configuration of passport-oauth2 stragtegy for creating middleware for accessing request.
 
 app.set('view engine', 'ejs');
 app.set('views', './views'); 
@@ -33,7 +34,6 @@ app.use(expressSession({                                                        
         }
     )
 }));
-
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticated);
